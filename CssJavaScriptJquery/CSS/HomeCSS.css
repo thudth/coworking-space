@@ -1,0 +1,218 @@
+/* CSS Document */
+body
+{
+	background:#F0F0F0
+}
+/*---------------------------------------------------------------------------------------Header------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------MenuBar*/
+#menubar
+{
+	background:#CCC;
+	position:fixed;
+	z-index:+2;
+}
+	<!-------------------------------Logo--->
+	#logo
+	{
+		height:100%;
+	}
+		#logoimage
+		{
+			height:90px;
+		}
+	<!-------------------------------Menu--->
+	#menu
+	{
+		background:#66C
+	}
+		#menu p
+		{
+			font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+			font-size: 35px;
+			margin-top:0px;
+			margin-bottom:0px;
+		}
+		#mymemu
+		{
+			margin-bottom:0px;
+		}
+	<!-------------------------------Tomem--->
+	#tomember
+	{
+		background:#ACACAC;
+		border-radius:8px; 
+		margin-top:20px;
+		float:right;
+	}
+		#tomember img
+		{
+			height:20px;
+		}
+		#tomem
+		{
+			font-family:Georgia, "Times New Roman", Times, serif;
+			font-size:16px;
+			margin:5px 0px;
+		}
+		#user a
+		{
+			width:150px;
+		}
+/*---------------------------------------------------------------------------------------Images*/
+#images
+{
+	width:1200px;
+	height:400px;
+	margin:25px auto 30px auto;
+	position:relative;
+	top:100px;
+}
+	#img1
+	{
+		width:200px;
+		height:200px;
+		background:#39F;
+		position:absolute;
+		top:0; left:0;
+	}
+	
+	#img2
+	{
+		width:200px;
+		height:200px;
+		background:#3CC;
+		position:absolute;
+		top:200px; left:0;
+	}
+	
+	#img3
+	{
+		width:400px;
+		height:400px;
+		background:#39C;
+		position:absolute;
+		top:0px; left:200px;
+	}
+	#img4
+	{
+		width:400px;
+		height:200px;
+		background:#C90;
+		position:absolute;
+		top:0px; right:200px;
+	}
+	
+	#img5
+	{
+		width:400px;
+		height:200px;
+		background:#CC0;
+		position:absolute;
+		top:200px; right:0px;
+	}
+	
+	#img6
+	{
+		width:200px;
+		height:200px;
+		background:#CF3;
+		position:absolute;
+		top:0px; right:0px;
+	}
+	
+	#img7
+	{
+		width:200px;
+		height:200px;
+		background:#C66;
+		position:absolute;
+		top:200px; right:400px;
+	}
+/*---------------------------------------------------------------------------------------Content------------------------------------------------------------*/
+#content
+{
+	width:1000px;
+	background:#E8E8E8;
+	margin:100px auto 0px auto;
+	padding:50px;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size:15px;
+}
+#content h2
+{
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size:24px;
+}
+	/*-----------------------------------------------------Contact--------------------------------*/
+#contact
+{
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size:15px;
+}
+	#contact h2
+	{
+		font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+		font-size:25px;
+	}
+	#contact ul li
+	{
+		list-style: none;
+		margin-bottom:10px;
+	}
+	#ban
+	{
+		float:right;
+		font-size: 18px;
+	}
+	.nan
+	{
+		padding-bottom:15px;
+	}
+	.nanchild
+	{
+		padding-left:40px;
+	}
+/*---------------------------------------------------------------------------------------Footer------------------------------------------------------------*/
+#footer1
+{
+	background:#B6DADA;
+	width:100%;height:400px;
+	margin:50px auto 0px auto;
+
+}
+<!-------------------------------Book--->
+	#book 
+	{
+		width:1200px;
+		background:#F06;
+	}
+		#bookseat{position:absolute; left:10%; padding-top:25px}
+		#conferenceRoom{position:absolute; left:40%; padding-top:25px}
+		#teamroomseat{position:absolute; left:70%; padding-top:25px}
+<!-------------------------------Common--->
+#common 
+{
+	background:#099;
+	width:100%;
+	height:100px;
+}
+	#common span
+	{
+		font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+		font-size:25px;
+		color:#0CC;
+		padding-right:10px;
+		padding-bottom:10px;
+	}
+	#common img
+	{
+		height:40px;
+		padding-top:10px;
+	}
+/*---------------------------------------------------------------------------------------Err Form------------------------------------------------------------*/
+#err
+{
+	float:left;
+	color:#F00;
+}
+
