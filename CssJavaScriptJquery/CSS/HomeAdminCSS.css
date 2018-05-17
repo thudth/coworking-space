@@ -63,11 +63,10 @@ body
 	{
 		text-align: right;
 		position:absolute;
-		top:0;right:0;
+		top:0;right:50px;
 		padding-top:10px;
 	}
 	#user .pure-menu-children {
-		width: 100%;
 		text-align: left;
 	}
 /*Content------------------------------------------------------------*/

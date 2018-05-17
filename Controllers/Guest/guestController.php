@@ -57,9 +57,6 @@ class guestController
 				if(isset($_POST['redeem']))
 				{
 					$redeem= new usersDto();
-					$redeem->setusername(htmlentities($_POST['uname']));
-					$redeem->setdateOfBirth(htmlentities($_POST['dob']));
-					$redeem->setphone(htmlentities($_POST['phone']));
 					$redeem->setemail(htmlentities($_POST['email']));
 					usersLogic::instance()->forgotpass($redeem);
 				}

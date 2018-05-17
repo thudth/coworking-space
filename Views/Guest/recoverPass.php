@@ -48,7 +48,7 @@ function validate()
 <div style="width:500px">
   <form method="post" class="pure-form">
     <fieldset>
-      <legend><h2>Change Password</h2></legend>
+      <legend><h2>Create new Password</h2></legend>
       <h4>Username: <?php echo $_SESSION['user']; ?></h4>
       <table width="100%">
       	<tr><td><div id="errpass" class="err"></div><br /></td></tr>

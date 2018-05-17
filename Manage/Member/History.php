@@ -55,10 +55,10 @@
                     <a id="menuLink1" class="pure-menu-link">
                         <i class="fa fa-book"></i> Book
                     </a>
-                    <ul class="pure-menu-children">
-                        <li class="pure-menu-item"><a href="Book.php?action=seats" class="pure-menu-link" style="float:left;">Seat</a></li>
-                        <li class="pure-menu-item"><a href="Book.php?action=teamroom" class="pure-menu-link" style="float:left;">Team Room</a></li>
-                        <li class="pure-menu-item"><a href="Book.php?action=conferenceroom" class="pure-menu-link" style="float:left;">Conference Room</a></li>
+                    <ul class="pure-menu-children" style="text-align: left">
+                        <li class="pure-menu-item"><a href="Book.php?action=seats" class="pure-menu-link">Seat</a></li>
+                        <li class="pure-menu-item"><a href="Book.php?action=teamroom" class="pure-menu-link">Team Room</a></li>
+                        <li class="pure-menu-item"><a href="Book.php?action=conferenceroom" class="pure-menu-link">Conference Room</a></li>
                     </ul>
                 </li>
                 <li class="pure-menu-item">
@@ -81,7 +81,7 @@
         </div>
     </div>
     <!-------------------------------Personal Information------------>
-      <div class="pure-u-1-8" id="user">
+      <div class="pure-u-1-4" id="user">
           <div class="pure-menu pure-menu-horizontal" id="tuckedMenu">
               <ul class="pure-menu-list">
                   <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">

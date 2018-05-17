@@ -67,7 +67,7 @@
 					$_SESSION['user']=$usersDto->getusername();
 					$_SESSION['pass']=$usersDto->getpass();
 					$_SESSION['role']=$usersDto->getroles($usersDto->setroles($row["roles"]));
-					echo $_SESSION['role'];
+
 					//Chuyen den trang----------------------------------
 					if($_SESSION['role']==1)
 						common::redirectPage('../Admin/HomeAdmin.php');
@@ -114,20 +114,15 @@
 		{
 			//Xác thực thông tin cá nhân (username, date of birth, phone, email )----------------------------------
 			$query= "select * from users 
-					WHERE username='".$usersDto->getusername()."' 
-						and dateOfBirth = '".$usersDto->getdateOfBirth()."'
-					 	and phone = '".$usersDto->getphone()."' 
-						and email = '".$usersDto->getemail()."'";
+					WHERE email = '".$usersDto->getemail()."'";
 			$result=$this->executeSelect($query);
 			$row=mysqli_fetch_array($result);
 			$sobanghi =mysqli_num_rows($result);
 				if($sobanghi>0)
 				{
-					$_SESSION['user']=$usersDto->getusername();
+					$_SESSION['user']=$usersDto->getusername($usersDto->setusername($row["username"]));
 					$_SESSION['role']=$usersDto->getroles($usersDto->setroles($row["roles"]));
-					//common::redirectPage('?action=recoverpass');
-					//http://localhost:8080/project2/Manage/Guest/loginOrRegis.php?action=recoverpass
-					#require_once('PHPMailer/PHPMailerAutoload.php');
+
 					include("../../CssJavaScriptJquery/PHPMailer/class.smtp.php");
 					require_once("../../CssJavaScriptJquery/PHPMailer/class.phpmailer.php");
 					$mail = new PHPMailer();
@@ -138,11 +133,11 @@
 					$mail->SMTPSecure = "tls";
 					$mail->Host = "smtp.gmail.com"; 
 					$mail->Port = 587;	// set the SMTP port for the  GMAIL
-					$mail->Username = "thudang84488@gmail.com";	// Gmail username
-					$mail->Password = "huyenthu";	// Gmail password
+					$mail->Username = "huyenthudangthanh@gmail.com";	// Gmail username
+					$mail->Password = "thudth.tns.12";	// Gmail password
 					$mail->CharSet = 'windows-1250';
 					$mail->SetFrom ('thudang84488@gmail.com', 'Coworking Space');
-					$mail->AddAddress ($usersDto->getemail(), 'Recipients  Name');
+					$mail->AddAddress ($usersDto->getemail(), $usersDto->getusername($usersDto->setusername($row["username"])));
 //					$mail->AddCC ( 'hanhkd@bkacad.com', 'Example.com Sales  Dep.');
 //					$mail->AddBCC ( 'hanhkd@bkacad.com', 'Example.com Sales  Dep.');
 					$mail->Subject = "Recover Password in Coworking Space";
@@ -151,16 +146,15 @@
 					$mail->IsHTML(true);
 					$mail->Body = "<a href='http://localhost:8080/project2/Manage/Guest/loginOrRegis.php?action=recoverpass'>Click here</a> to recover password";
 //					$mail->AddAttachment("abc.xls");
-					
+
 					// you may also use this format $mail->AddAddress ($recipient);  
 					if(!$mail->Send())
 					{
-					$error_message = "Mailer Error: " . $mail->ErrorInfo;
+					echo $error_message = "Mailer Error: " . $mail->ErrorInfo;
 					} else
 					{
 					echo( "<h3>An email has been sent to your email account for password recovery.</h3>");
 					}
-
 
 				}
 				else common::redirectPage('?action=forgotpass&errecover');

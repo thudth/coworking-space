@@ -76,7 +76,7 @@ session_start();
         <div class="pure-menu pure-menu-horizontal" id="tuckedMenu">
             <ul class="pure-menu-list">
                 <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                    <a href="" id="menuLink1" class="pure-menu-link">
+                    <a href="#" id="menuLink1" class="pure-menu-link">
                         <i class="fa fa-user"></i>
                         <?php echo usersDao::instance()->getName($_SESSION['user']); ?></a>
                     <ul class="pure-menu-children">
