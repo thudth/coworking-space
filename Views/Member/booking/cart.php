@@ -20,7 +20,7 @@ table
 }
 </style>
 <body>
-<div style="width:800px">
+<div>
 <?php $sum=0; ?>
 	<form method="post" class="pure-form">
         <h2>Customer: <strong><?php echo $orderDto->getusername(); ?></strong></h2><br />
@@ -31,7 +31,7 @@ table
 <!-------------------------------------------------------------------------------SEAT------------------------------->
   <?php if(isset($_SESSION['seatStart'])){?>
   <h4>SEATS</h4>
-  <table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="600px">
+  <table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
     <thead>
 	  <tr>
 		<th scope="col">Numerical Order</th>
@@ -62,7 +62,8 @@ table
 		<td><?php echo $_SESSION['seatStart'][$a] ?></td>
 		<td><?php echo $_SESSION['seatFinish'][$a] ?></td>
 		<td><?php echo $pay. " 000 vnd"?></td>
-		<td><a href="?action=delSeatCart&id=<?php echo $a;?>">Delete</a></td>
+		<td><a href="?action=delSeatCart&id=<?php echo $a;?>">
+                <i class="fa fa-trash"></i> Delete</a></td>
 	  </tr>
       <?php }?>
     </tbody>
@@ -72,7 +73,7 @@ table
 <!-------------------------------------------------------------------------------TEAM ROOM------------------------------->
   <?php if(isset($_SESSION['TeamRoomStart'])){?>
   <h4>ROOM FOR TEAM</h4>
-  <table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="800px">
+  <table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
     <thead>
 	  <tr>
 		<th scope="col">Numerical Order</th>
@@ -107,7 +108,8 @@ table
 		<td><?php echo $_SESSION['TeamRoomStart'][$a] ?></td>
 		<td><?php echo $_SESSION['TeamRoomFinish'][$a] ?></td>
 		<td><?php echo $pay." 000 vnd" ?></td>
-		<td><a href="?action=delTeamRoomCart&id=<?php echo $a;?>">Delete</a></td>
+		<td><a href="?action=delTeamRoomCart&id=<?php echo $a;?>">
+                <i class="fa fa-trash"></i> Delete</a></td>
 	  </tr>
       <?php } ?>
     </tbody>
@@ -116,7 +118,7 @@ table
 <!-------------------------------------------------------------------------------SEAT------------------------------->
   <?php if(isset($_SESSION['ConfRoomStart'])){?>
   <h4>CONFERENCES</h4>
-  <table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="800px">
+  <table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
     <thead>
 	  <tr>
 		<th scope="col">Numerical Order</th>
@@ -141,7 +143,8 @@ table
 		<td><?php echo $_SESSION['ConfRoomStart'][$a] ?> o'clock</td>
 		<td><?php echo $_SESSION['ConfRoomFinish'][$a] ?> o'clock</td>
 		<td><?php echo $pay." 000 vnd"; ?></td>
-		<td><a href="?action=delConfRoomCart&id=<?php echo $a;?>">Delete</a></td>
+		<td><a href="?action=delConfRoomCart&id=<?php echo $a;?>">
+                <i class="fa fa-trash"></i> Delete</a></td>
 	  </tr>
       <?php }?>
     </tbody>
@@ -150,7 +153,8 @@ table
 <span style="font-size:18px"><?php echo "Total: ".$sum." 000 vnd " ?></span>
 <input type="submit" name="insert" class="pure-button pure-button-primary" value="Book"/>       
 </form>
-       <a href="Book.php#content" style="float:right; font-size:18px">Continue add a reservation </a><br />
+       <a href="Book.php#content" style="float:right; font-size:18px">
+           <i class="fa fa-arrow-left"></i> Continue add a reservation </a><br />
 </div>
 </body>
 </html>

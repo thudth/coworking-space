@@ -31,8 +31,8 @@ table
 <!------------------------------Seat Price-------------------------------->
   <tr>
     <th rowspan="<?php echo count($SeatPrice)+1 ?>"><h3>Seat</h3><br />
-    	<?php if($checksess) echo "<a href='?action=seats'>Book</a>"; else{?>
-        <a onclick="return confirm ('You have to login to book')" href="#content">Book</a><?php }?>
+    	<?php if($checksess) echo "<a href='?action=seats'><i class=\"fa fa-pencil-square-o\"></i> Book</a>"; else{?>
+        <a onclick="return confirm ('You have to login to book')" href="#content"><i class="fa fa-pencil-square-o"></i> Book</a><?php }?>
     </th>
   </tr>
 <?php foreach($SeatPrice as $seatDto){ ?>
@@ -45,8 +45,8 @@ table
 <!------------------------------Team room Price-------------------------------->
  <tr>
     <th rowspan="<?php echo count($arrTeamRoomPrice)+1 ?>"><h3>Team Room</h3>
-    	<?php if($checksess) echo "<a href='?action=teamroom'>Book</a>"; else{?>
-        <a onclick="return confirm ('You have to login to book')" href="#content">Book</a><?php }?>
+    	<?php if($checksess) echo "<a href='?action=teamroom'><i class=\"fa fa-pencil-square-o\"></i> Book</a>"; else{?>
+        <a onclick="return confirm ('You have to login to book')" href="#content"><i class="fa fa-pencil-square-o"></i> Book</a><?php }?>
     </th>
   </tr>
 <?php foreach($arrTeamRoomPrice as $teamroomtype) {?>
@@ -60,8 +60,8 @@ table
 <!------------------------------Conference room Price-------------------------------->
  <tr>
     <th scope="row" rowspan="<?php echo count($arrConfRoomPrice)+1 ?>"><h3>Confernce Room</h3>
-	   <?php if($checksess) echo "<a href='?action=conferenceroom'>Book</a>"; else {?>
-        <a onclick="return confirm ('You have to login to book')" href="#content">Book</a><?php }?>
+	   <?php if($checksess) echo "<a href='?action=conferenceroom'><i class=\"fa fa-pencil-square-o\"></i> Book</a>"; else {?>
+        <a onclick="return confirm ('You have to login to book')" href="#content"><i class="fa fa-pencil-square-o"></i> Book</a><?php }?>
     </th>
   </tr>
 <?php foreach($arrConfRoomPrice as $teamroomtype) {?>

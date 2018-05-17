@@ -39,8 +39,8 @@ function Pay()
 function validate()
 {
 	var date=document.getElementById('date').value;
-	var start=document.getElementById('startingtime').value;
-	var finish=document.getElementById('finishingtime').value;
+	var start=parseInt(document.getElementById('startingtime').value);
+	var finish=parseInt(document.getElementById('finishingtime').value);
 	if(date.length==0 || isNaN(start) || isNaN(finish) || finish<=start)
 	{
 		document.getElementById('errtimeinuse').innerHTML="*Invalid date or time";
@@ -116,10 +116,15 @@ function validate()
 		</tr>
 		<tr>
 			<td align="center" colspan="3">
-                    <input type="submit" value="Add to CART" name="book" id="submit" class="pure-button pure-button-primary" onclick="return validate()"/>
-                	<input type="reset" value="Clear" id="button" class="pure-button pure-button-active"/><br />
-                    <a href="?action=cart#content" style="float:left; font-size:17px">Go to cart</a>
-                	<a href="Book.php#content" style="float:right; font-size:17px">Back</a>
+                <button type="submit" name="book" id="submit" class="pure-button pure-button-primary" onclick="return validate()">
+                    <i class="fa fa-cart-plus"></i> Add to Cart
+                </button>
+                <button type="reset" id="button" class="pure-button pure-button-active">
+                    <i class="fa fa-undo"></i> Clear
+                </button>
+                <br>
+                <a href="?action=cart#content" style="float:left; font-size:17px"><i class="fa fa-shopping-cart"></i> Go to cart</a>
+                <a href="Book.php#content" style="float:right; font-size:17px"><i class="fa fa-arrow-left"></i> Back</a>
 			</td>       
 		</tr>
 	</table>
