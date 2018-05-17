@@ -41,8 +41,8 @@ class personalController
 				
 				if(isset($_POST['save']))
 				{
-					$oldpass=htmlentities($_POST['oldpass']);
-					$newpass=htmlentities($_POST['newpass']);
+					$oldpass=md5(htmlentities($_POST['oldpass']));
+					$newpass=md5(htmlentities($_POST['newpass']));
 					usersLogic::instance()->changePass($oldpass,$newpass);
 					//common::redirectPage('../Admin/HomeAdmin.php');
 				}

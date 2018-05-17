@@ -26,7 +26,7 @@ class guestController
 				{
 					$login= new usersDto();
 					$login->setusername(htmlentities($_POST['uname']));
-					$login->setpass(htmlentities($_POST['pass']));
+					$login->setpass(md5(htmlentities($_POST['pass'])));
 					usersLogic::instance()->login($login);
 				}
 				else
@@ -42,7 +42,7 @@ class guestController
 					$regis->setfirstName(htmlentities($_POST['fname']));
 					$regis->setlastName(htmlentities($_POST['lname']));
 					$regis->setusername(htmlentities($_POST['uname']));
-					$regis->setpass(htmlentities($_POST['cpass']));
+					$regis->setpass(md5(htmlentities($_POST['cpass'])));
 					$regis->setgender(htmlentities($_POST['gender']));
 					$regis->setdateOfBirth(htmlentities($_POST['dob']));
 					$regis->setphone(htmlentities($_POST['phone']));
@@ -67,7 +67,7 @@ class guestController
 			case "recoverpass":
 				if(isset($_POST['save']))
 				{
-					$newpass=htmlentities($_POST['cpass']);
+					$newpass=md5(htmlentities($_POST['cpass']));
 					usersLogic::instance()->RecoverPass($newpass);
 				}
 				else
