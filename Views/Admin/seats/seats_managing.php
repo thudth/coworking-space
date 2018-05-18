@@ -18,14 +18,14 @@ table
 
 <body>
 <h2>Seats</h2>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="880px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
 <thead>
 	  <tr>
 		<th scope="col">Code</th>
 		<th scope="col">Seat Number</th>
-		<th scope="col"><a href="?action=changePrice">Change</a><br /><br />Price per day (vnd)</th>
+		<th scope="col">Price/day (vnd) <a href="?action=changePrice"><i class="fa fa-pencil-square-o"></i></a></th>
 		<th scope="col">Note</th>
-		<th colspan="2"><a href="?action=insert">Add</a></th>
+		<th colspan="2"><a href="?action=insert"><i class="fa fa-plus"></i> New seat</a></th>
 	  </tr>
    </thead>
    <tbody>   
@@ -37,9 +37,9 @@ table
 		<td><?php echo $seatsDto->getseatnumber(); ?></td>
 		<td><?php echo $seatsDto->getpricePerDay(); ?> 000 vnd</td>
 		<td><?php echo $seatsDto->getnote(); ?></td>
-		<td><a href="?action=edit&id=<?php echo $seatsDto->getcode(); ?>">Edit</a></td>
+		<td><a href="?action=edit&id=<?php echo $seatsDto->getcode(); ?>"><i class="fa fa-edit"></i> Edit</a></td>
 		<td><a href="?action=delete&id=<?php echo $seatsDto->getcode(); ?>"
-        		onclick="return confirm ('Delete <?php echo $seatsDto->getcode(); ?>')">Delete</a></td>
+        		onclick="return confirm ('Delete <?php echo $seatsDto->getcode(); ?>')"><i class="fa fa-trash"></i> Delete</a></td>
 	  </tr>
 	  <?php } ?>
     </tbody>

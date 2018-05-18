@@ -17,7 +17,7 @@ table
 
 <body>
 <h2>Revenue</h2>
-<table border="1" cellspacing="0" class="pure-table pure-table-bordered" width="880px">
+<table border="1" cellspacing="0" class="pure-table pure-table-bordered">
   <tr>
     <th scope="row">Year</th>
     <?php 
@@ -40,9 +40,10 @@ table
     <th scope="row"></th>
     <?php 
 		for($i=0;$i<count($month);$i++) {?>
-    <td colspan="<?php echo count($month[$i]) ?>"><a href="?action=month&y=<?php echo $year[$i]->getorderYear()?>">Detail</a></td><?php }?>
+    <td colspan="<?php echo count($month[$i]) ?>"><a href="?action=month&y=<?php echo $year[$i]->getorderYear()?>">
+                <i class="fa fa-eye"></i> Detail</a></td><?php }?>
   </tr>
 </table><br />
-    <a href="?action=user" style="float:right; font-size:20px">Revenue with member</a>
+    <a href="?action=user" style="float:right; font-size:20px"><i class="fa fa-eye"></i> Revenue with member</a>
 </body>
 </html>

@@ -18,7 +18,7 @@ table
 
 <body>
 <h2>User Managing</h2>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="880px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
 <thead>
   <tr>
     <th scope="col">Username</th>
@@ -28,7 +28,7 @@ table
     <th scope="col">Phone</th>
     <th scope="col">Email</th>
     <th scope="col">Role</th>
-    <th><a href='?action=add'>Add Admin</a></th>
+    <th><a href='?action=add'><i class="fa fa-plus"></i> New Admin</a></th>
   </tr>
 </thead>
 <tbody>
@@ -46,7 +46,8 @@ table
 		if($a->getroles()=="Admin"){
 		?>
         <a href='?action=delete&user=<?php echo $a->getusername(); ?>'
-        	onclick="return confirm ('Cancel admin role <?php echo $a->getusername(); ?>')">Cancel admin roles </a>
+        	onclick="return confirm ('Cancel admin role <?php echo $a->getusername(); ?>')">
+            <i class="fa fa-times-circle"></i> Cancel admin roles </a>
         <?php } ?>
     </td>
   </tr>

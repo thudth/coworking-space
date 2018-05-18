@@ -17,7 +17,7 @@ table
 </style>
 <body>
 <h2>Conference Rooms</h2>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="880px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
 <thead>
   <tr>
     <th scope="col">Room Number</th>
@@ -25,7 +25,7 @@ table
     <th scope="col">Price Per Hour</th>
     <th scope="col">Note For This Room</th>
     <th scope="col">Description For Room Type</th>
-    <th scope="col" colspan="2"><a href="?action=add">Add</a></th>
+    <th scope="col" colspan="2"><a href="?action=add"><i class="fa fa-plus"></i> New room</a></th>
   </tr>
 </thead>
 <tbody>
@@ -38,9 +38,9 @@ table
     <td><?php echo $conferenceroomsDto->getpriceperhour(); ?></td>
     <td><?php echo $conferenceroomsDto->getdescription(); ?></td>
     <td><?php echo $conferenceroomsDto->getnote(); ?></td>
-    <td><a href="?action=edit&id=<?php echo $conferenceroomsDto->getroomNumber(); ?>">Edit</a></td>
+    <td><a href="?action=edit&id=<?php echo $conferenceroomsDto->getroomNumber(); ?>"><i class="fa fa-edit"></i> Edit</a></td>
     <td><a href="?action=delete&id=<?php echo $conferenceroomsDto->getroomNumber(); ?>" 
-    		onclick="return confirm ('Delete <?php echo $conferenceroomsDto->getroomNumber(); ?>')">Delete</a></td>
+    		onclick="return confirm ('Delete <?php echo $conferenceroomsDto->getroomNumber(); ?>')"><i class="fa fa-trash"></i> Delete</a></td>
   </tr>
   <?php } ?>
 </tbody>

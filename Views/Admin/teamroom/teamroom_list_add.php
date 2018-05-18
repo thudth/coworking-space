@@ -53,12 +53,16 @@ return true;
 			</tr>
 			<tr>
 				<td align="center"><br />
-					<input type="submit" value="Save" name="save" id="submit" class="pure-button pure-button-primary" onclick="return validate()"/>
-					<input type="reset" value="Clear" id="button" class="pure-button pure-button-active"/><br />
+                    <button type="submit" name="save" id="submit" class="pure-button pure-button-primary" onclick="return validate()">
+                        <i class="fa fa-save"></i> Save
+                    </button>
+                    <button type="reset" id="button" class="pure-button pure-button-active">
+                        <i class="fa fa-undo"></i> Reset
+                    </button>
 				</td>
 			</tr>
 		</table>
-        <a href="TeamRooms.php" style="float:right; font-size:20px">Back</a>
+        <a href="TeamRooms.php" style="float:right; font-size:20px"><i class="fa fa-arrow-left"></i> Back</a>
 	</fieldset>
   </form>
 </div>

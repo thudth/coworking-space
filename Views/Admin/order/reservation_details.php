@@ -10,7 +10,7 @@
 <!---------------------------------------------------------------------------------------------------->
 <?php if(count($arrSeatOrder)>0){ ?>
 	<h4>SEATS</h4>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="500px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
   <thead>
 	  <tr>
 		<th scope="col">Code</th>
@@ -34,7 +34,7 @@
 <!---------------------------------------------------------------------------------------------------->
 <?php if(count($arrTeamRoomOrder)>0){ ?>
 	<h4>ROOM FOR TEAM</h4>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="800px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
   <thead>
 	  <tr>
 		<th scope="col">Code</th>
@@ -62,7 +62,7 @@
 <!---------------------------------------------------------------------------------------------------->	
 <?php if(count($arrConferenceOrder)>0){ ?>
 	<h4>CONFERENCE ROOM</h4>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="800px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
   <thead>
 	  <tr>
 		<th scope="col">Code</th>

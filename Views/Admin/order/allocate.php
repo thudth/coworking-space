@@ -59,7 +59,7 @@ function validate()
 		for($i=$a+1; $i<count($arrSeatOrder); $i++){
 			 echo $arrSeatOrder[$i]->getcode();}}
 		?>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="600px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
   <thead>
 	  <tr>
 		<th scope="col">Code</th>
@@ -93,7 +93,7 @@ function validate()
 <!---------------------------------------------------------------------------------------------------->
 <?php if(count($arrTeamRoomOrder)>0){ ?>
 	<h4>ROOM FOR TEAM</h4>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="800px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
   <thead>
 	  <tr>
 		<th scope="col">Code</th>
@@ -123,13 +123,13 @@ function validate()
       <?php } ?>
   </tbody>
 </table>
-<div class="err" id="errAllocateTeamRoom" align="left" style="width:800px"></div>
+<div class="err" id="errAllocateTeamRoom" align="left"></div>
 <br /><br />
 <?php }?>
 <!---------------------------------------------------------------------------------------------------->
 <?php if(count($arrConferenceOrder)>0){ ?>
 	<h4>CONFERENCE ROOM</h4>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="800px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
   <thead>
 	  <tr>
 		<th scope="col">Code</th>
@@ -167,6 +167,6 @@ function validate()
 <input type="submit" value="Allocate" name="allocate" class="pure-button pure-button-primary" onclick="return validate()"/>
 </form>
 <div style="width:500px">
-<a href="Order.php#content" style="float:right; font-size:20px">Back</a></div>
+<a href="Order.php#content" style="float:right; font-size:20px"><i class="fa fa-arrow-left"></i> Back</a></div>
 </body>
 </html>

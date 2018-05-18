@@ -28,12 +28,16 @@
 	  </tr>
 	  <tr>
 		<td align="center">
-            <input type="submit" name="save" value="Save" id="submit" class="pure-button pure-button-primary"/>
-            <input type="reset" value="Clear" id="button" class="pure-button pure-button-active"/>
+            <button type="submit" name="save" id="submit" class="pure-button pure-button-primary">
+                <i class="fa fa-save"></i> Save
+            </button>
+            <button type="reset" id="button" class="pure-button pure-button-active">
+                <i class="fa fa-undo"></i> Clear
+            </button>
 		</td>
 	  </tr>
 	</table>
-    <a href="Orderstate.php" style="float:right; font-size:20px">Back</a>
+    <a href="Orderstate.php" style="float:right; font-size:20px"><i class="fa fa-arrow-left"></i> Back</a>
   </fieldset>
 </form>
 </div>

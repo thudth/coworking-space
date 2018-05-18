@@ -39,8 +39,8 @@
 </div>
 </form>
 </div>
-<div>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="880px">
+<div style="width: 100%">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
   <thead>
     <tr>
       <th scope="col">STT</th>
@@ -65,12 +65,12 @@
       <td>
           <?php 
           if($a->getorderState()==1)
-              echo "<a href='?action=upStatus&id=".$a->getcode()."'>Update Status</a>";
+              echo "<a href='?action=upStatus&id=".$a->getcode()."'><i class='fa fa-arrow-up'></i> Update Status</a>";
           else if($a->getorderState()==2)
               //echo $a->getorderState();
-              echo "<a href='?action=allocate&id=".$a->getcode()."'>Allocating</a>";
+              echo "<a href='?action=allocate&id=".$a->getcode()."'><i class='fa fa-cogs'></i> Allocating</a>";
           else 
-              echo "<a href='?action=detail&id=".$a->getcode()."'>Detail</a>";
+              echo "<a href='?action=detail&id=".$a->getcode()."'><i class='fa fa-eye'></i> Detail</a>";
           ?>
       </td>
     </tr>
