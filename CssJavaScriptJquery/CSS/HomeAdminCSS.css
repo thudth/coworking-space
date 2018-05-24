@@ -1,8 +1,22 @@
 /* CSS Document */
+@import "pureCSS.css";
+@import "semanticCard.min.css";
+@import "semanticButton.min.css";
+@import "../font-awesome-4.7.0/css/font-awesome.min.css";
+
 body
 {
 	background:#F0F0F0;
 	height:600px;
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: double;
+}
+a:active {
+	color: rgba(85, 26, 163, 0.7);
 }
 /*Menu------------------------------------------------------------*/
 #menu
@@ -20,11 +34,13 @@ body
 	#mainmenu
 	{
 		margin:10px 0;
-		
+	}
+	#mainmenu a {
+
 	}
 	#title
 	{
-		margin-left:40px;
+		margin-left:20px;
 	}
 	#menu span
 	{
@@ -32,10 +48,9 @@ body
 		font-size:25px;
 		color:#0CC;
 	}
-	#link
-	{
-		height:40px;
-		padding-top:10px;
+	#menu .link-icon {
+		color: #42c0fb;
+		font-size: 50px;
 	}
 /*Header------------------------------------------------------------*/
 #header
@@ -51,16 +66,18 @@ body
 	{
 		font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
 		font-size: 35px;
-		margin-top:0px;
-		margin-bottom:0px;
+		margin-top:0;
+		margin-bottom:0;
 	}
 	#user
 	{
-		float:right;
+		text-align: right;
 		position:absolute;
-		top:0;right:0;
+		top:0;right:50px;
 		padding-top:10px;
-		width:120px;
+	}
+	#user .pure-menu-children {
+		text-align: left;
 	}
 /*Content------------------------------------------------------------*/
 #content
@@ -71,7 +88,7 @@ body
 	left:300px;
 	
 	padding:0 30px 30px 30px;
-	margin: 40px 0px 0px 40px;
+	margin: 40px 0 0 40px;
 	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	font-size:15px;
 }

@@ -69,43 +69,20 @@ function validate()
 <div align="center" style="width:500px">
   <form method="post" class="pure-form">
 	<fieldset>
-		<legend><h2>Fill out these info to get your account back</h2></legend>
+		<legend><h2>Recover Password</h2></legend>
 		<?php 
 			if(isset($_GET['errecover']))
-				echo "<h4 style='color:#F00'>*Information is not correct</h4>"
+				echo "<h4 style='color:#F00'>*Email is not correct</h4>"
         ?>
 		<table width="100%">
         
               <tr>
-                <td>*Chúng tôi cần xác nhận thông tin của bạn<br /><br /></td>
+                <td>* Enter your email<br /><br /></td>
               </tr>
       
 			<tr>
               <td>
-				<label for="uname"><strong>Username:</strong></label><br />
-				<input type="text" name="uname" id="uname" class="pure-input-1" autofocus="autofocus"/>	
-				<div id="erruname" class="err"></div><br />
-              </td>
-			</tr>
-			<tr>
-              <td>
-                <label for="dob"><strong>Date of birth:</strong></label>
-				<input type="date" name="dob" id="dob" style="width:400px" placeholder="dd/mm/yyyy"/>
-				<div id="errdob" class="err"></div><br />
-              </td>
-			</tr>
-			<tr>
-              <td>
-                <label for="phone"><strong>Phone:</strong></label><br />
-				<input type="text" name="phone" id="phone" class="pure-input-1"/>
-				<div id="errphone" class="err"> </div><br />
-              </td>
-				
-			</tr>
-			<tr>
-              <td>
-                <label for="email"><strong>Email:</strong></label><br />
-                <input type="text" name="email" id="email" class="pure-input-1"/>
+                <input type="text" name="email" class="pure-input-1" placeholder="Email"/>
                 <div id="erremail" class="err"> </div><br />
               </td>
 			</tr>
@@ -113,13 +90,13 @@ function validate()
 				<td align="center">
 					<input type="submit" value="Redeem" name="redeem" id="submit"
                      class="pure-button pure-button-primary" onclick="return validate()"/>
-					<input type="reset" value="Clear" id="button" class="pure-button pure-button-active"/>       
+					<input type="reset" value="Clear" id="button" class="pure-button pure-button-active"/>
 				</td>
 			</tr>
             <tr>
 				<td>
-                    <a href="?action=register" style="float:right; font-size:20px" >Register</a>
-                    <a href="?action=login" style="float:left; font-size:20px" >Login</a>
+                    <a href="?action=register" style="float:right; font-size:20px" ><i class="fa fa-registered"></i> Register</a>
+                    <a href="?action=login" style="float:left; font-size:20px" ><i class="fa fa-sign-out"></i> Login</a>
                 </td>
             </tr>
 		</table>

@@ -18,12 +18,12 @@ table
 
 <body>
 <h2>Manage Roles</h2>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="500px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
   <thead>
     <tr>
       <th scope="col">Code</th>
       <th scope="col">Role</th>
-      <th colspan="2"><a href="?action=add">Add</a></th>
+      <th colspan="2"><a href="?action=add"><i class="fa fa-plus"></i> New Role</a></th>
     </tr>
   </thead>
   <tbody>  
@@ -33,9 +33,9 @@ table
     <tr>
       <td><?php echo $a->getcode(); ?></td>
       <td><?php echo $a->getrole(); ?></td>
-      <td><a href="?action=edit&id=<?php echo $a->getcode(); ?>">Edit</a></td>
+      <td><a href="?action=edit&id=<?php echo $a->getcode(); ?>"><i class="fa fa-edit"></i> Edit</a></td>
       <td><a href="?action=delete&id=<?php echo $a->getcode(); ?>" 
-              onclick="return confirm ('Delete <?php echo $a->getcode(); ?>')">Delete</a></td>
+              onclick="return confirm ('Delete <?php echo $a->getcode(); ?>')"><i class="fa fa-trash"></i> Delete</a></td>
     </tr>
 	<?php } ?>
   </tbody>    

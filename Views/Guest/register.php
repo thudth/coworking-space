@@ -207,7 +207,7 @@ function validate()
             </td>
         </tr>
 	</table>
-    <a href="?action=login" style="float:right; font-size:20px">Login</a>
+    <a href="?action=login" style="float:right; font-size:20px"><i class="fa fa-sign-in"></i> Login</a>
 </fieldset
 ></form>
 </div>

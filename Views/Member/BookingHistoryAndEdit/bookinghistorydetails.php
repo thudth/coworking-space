@@ -91,7 +91,7 @@
   <?php }?>
 </table><br /><br />
 <?php }?>
-<a href="History.php#content" style="float:right; font-size:18px">Back to History</a>
+<a href="History.php#content" style="float:right; font-size:18px"><i class="fa fa-arrow-left"></i> Back to History</a>
 </div>
 </body>
 </html>

@@ -18,7 +18,7 @@ table
 
 <body>
 <h2>Revenue Detail <?php echo $_GET['y']?></h2>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="700px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
 <thead>
   <tr>
     <th scope="col">Month</th>
@@ -47,7 +47,7 @@ table
   </tr>
 </tbody>
 </table><br />
-    <a href="Revenue.php" style="float:right; font-size:20px">Back</a>
-    <a href="?action=user" style="float:left; font-size:20px">Revenue with member</a>
+    <a href="Revenue.php" style="float:right; font-size:20px"><i class="fa fa-arrow-left"></i> Back</a>
+    <a href="?action=user" style="float:left; font-size:20px"><i class="fa fa-eye"></i> Revenue with member</a>
 </body>
 </html>

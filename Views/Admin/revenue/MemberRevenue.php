@@ -18,7 +18,7 @@ table
 
 <body>
 <h2>Revenue with member</h2>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="880px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
 <thead>
   <tr>
     <th scope="col">Username</th>
@@ -46,6 +46,6 @@ table
   </tr>
 </tbody>
 </table><br />
-    <a href="Revenue.php" style="float:right; font-size:20px">Back</a>
+    <a href="Revenue.php" style="float:right; font-size:20px"><i class="fa fa-arrow-left"></i> Back</a>
 </body>
 </html>

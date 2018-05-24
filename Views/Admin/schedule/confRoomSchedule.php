@@ -27,7 +27,7 @@
         <?php } ?>
     </select><br />
 </form><br />
-<table border="1" cellspacing="0" class="pure-table" width="500px">
+<table border="1" cellspacing="0" class="pure-table">
 <thead>
   <tr>
     <th scope="col">Đang sử dụng</th>

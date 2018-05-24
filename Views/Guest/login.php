@@ -74,8 +74,8 @@ function validate()
             </tr>
             <tr>
               	<td>        
-                    <a href="?action=forgotpass" style="float:left; font-size:18px">Forgot your password?</a>
-                    <a href="?action=register" style="float:right; font-size:18px">Register</a><br />
+                    <a href="?action=forgotpass#content" style="float:left; font-size:18px">Forgot your password?</a>
+                    <a href="?action=register" style="float:right; font-size:18px"><i class="fa fa-registered"></i> Register</a><br />
 				</td>
             </tr>
         </table>

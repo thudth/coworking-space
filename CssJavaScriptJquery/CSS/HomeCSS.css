@@ -1,7 +1,21 @@
 /* CSS Document */
+@import "pureCSS.css";
+@import "semanticCard.min.css";
+@import "semanticButton.min.css";
+@import "../font-awesome-4.7.0/css/font-awesome.min.css";
+
 body
 {
 	background:#F0F0F0
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: double;
+}
+a:active {
+	color: rgba(85, 26, 163, 0.7);
 }
 /*---------------------------------------------------------------------------------------Header------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------------MenuBar*/
@@ -11,7 +25,7 @@ body
 	position:fixed;
 	z-index:+2;
 }
-	<!-------------------------------Logo--->
+	/*<!-------------------------------Logo--->*/
 	#logo
 	{
 		height:100%;
@@ -20,23 +34,22 @@ body
 		{
 			height:90px;
 		}
-	<!-------------------------------Menu--->
+	/*<!-------------------------------Menu--->*/
 	#menu
 	{
-		background:#66C
 	}
 		#menu p
 		{
 			font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
 			font-size: 35px;
-			margin-top:0px;
-			margin-bottom:0px;
+			margin-top:0;
+			margin-bottom:0;
 		}
 		#mymemu
 		{
-			margin-bottom:0px;
+			margin-bottom:0;
 		}
-	<!-------------------------------Tomem--->
+	/*<!-------------------------------Tomem--->*/
 	#tomember
 	{
 		background:#ACACAC;
@@ -52,11 +65,18 @@ body
 		{
 			font-family:Georgia, "Times New Roman", Times, serif;
 			font-size:16px;
-			margin:5px 0px;
+			margin:5px 0;
 		}
-		#user a
-		{
-			width:150px;
+		#user {
+			text-align: right;
+			position: absolute;
+			top: 0;
+			right: 50px;
+			padding-top: 10px;
+		}
+
+		#user .pure-menu-children {
+			text-align: left;
 		}
 /*---------------------------------------------------------------------------------------Images*/
 #images
@@ -91,7 +111,7 @@ body
 		height:400px;
 		background:#39C;
 		position:absolute;
-		top:0px; left:200px;
+		top:0; left:200px;
 	}
 	#img4
 	{
@@ -99,7 +119,7 @@ body
 		height:200px;
 		background:#C90;
 		position:absolute;
-		top:0px; right:200px;
+		top:0; right:200px;
 	}
 	
 	#img5
@@ -108,7 +128,7 @@ body
 		height:200px;
 		background:#CC0;
 		position:absolute;
-		top:200px; right:0px;
+		top:200px; right:0;
 	}
 	
 	#img6
@@ -117,7 +137,7 @@ body
 		height:200px;
 		background:#CF3;
 		position:absolute;
-		top:0px; right:0px;
+		top:0; right:0;
 	}
 	
 	#img7
@@ -133,7 +153,7 @@ body
 {
 	width:1000px;
 	background:#E8E8E8;
-	margin:100px auto 0px auto;
+	margin:100px auto 0 auto;
 	padding:50px;
 	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	font-size:15px;
@@ -177,11 +197,11 @@ body
 {
 	background:#B6DADA;
 	width:100%;height:400px;
-	margin:50px auto 0px auto;
+	margin:50px auto 0 auto;
 
 }
-<!-------------------------------Book--->
-	#book 
+/*<!-------------------------------Book--->*/
+	#book
 	{
 		width:1200px;
 		background:#F06;
@@ -189,25 +209,25 @@ body
 		#bookseat{position:absolute; left:10%; padding-top:25px}
 		#conferenceRoom{position:absolute; left:40%; padding-top:25px}
 		#teamroomseat{position:absolute; left:70%; padding-top:25px}
-<!-------------------------------Common--->
+
+/*--------------------------------Common-----------------------------------*/
 #common 
 {
-	background:#099;
+	background: #099;
 	width:100%;
-	height:100px;
+	text-align: right;
+	font-size: 30px;
 }
 	#common span
+	 {
+		 font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+		 color:#42c0fb;
+		 padding-right:10px;
+		 padding-bottom:10px;
+	 }
+	#common a
 	{
-		font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-		font-size:25px;
-		color:#0CC;
-		padding-right:10px;
-		padding-bottom:10px;
-	}
-	#common img
-	{
-		height:40px;
-		padding-top:10px;
+		color: #00c9c1;
 	}
 /*---------------------------------------------------------------------------------------Err Form------------------------------------------------------------*/
 #err

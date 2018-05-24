@@ -34,8 +34,6 @@ session_start();
 </head>
 <link rel="stylesheet" type="text/css" href="../../CssJavaScriptJquery/CSS/HomeCSS.css"/>
 
-<link rel="stylesheet" type="text/css" href="../../CssJavaScriptJquery/CSS/pureCSS.css"/>
-<link rel="stylesheet" type="text/css" href="../../CssJavaScriptJquery/CSS/semanticCard.css"/>
 <script type="text/javascript" src="../../CssJavaScriptJquery/jquery-3.1.1.min.js"></script>
 
 
@@ -53,37 +51,66 @@ session_start();
       <p align="center"><strong>Coworking spaces in Freedom</strong></p>
         <div class="pure-menu pure-menu-horizontal" id="tuckedMenu" align="center">
             <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="HomeMember.php#content" class="pure-menu-link">Home</a></li>
-                <li class="pure-menu-item"><a href="Book.php#content" class="pure-menu-link">Get Prices</a></li>
+                <li class="pure-menu-item">
+                    <a href="HomeMember.php#content" class="pure-menu-link">
+                        <i class="fa fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="Book.php#content" class="pure-menu-link">
+                        <i class="fa fa-table"></i> Get Prices
+                    </a>
+                </li>
                 <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                    <a id="menuLink1" class="pure-menu-link">Book</a>
-                    <ul class="pure-menu-children">
-                        <li class="pure-menu-item"><a href="Book.php?action=seats" class="pure-menu-link" style="float:left;">Seat</a></li>
-                        <li class="pure-menu-item"><a href="Book.php?action=teamroom" class="pure-menu-link" style="float:left;">Team Room</a></li>
-                        <li class="pure-menu-item"><a href="Book.php?action=conferenceroom" class="pure-menu-link" style="float:left;">Conference Room</a></li>
+                    <a id="menuLink1" class="pure-menu-link">
+                        <i class="fa fa-book"></i> Book
+                    </a>
+                    <ul class="pure-menu-children" style="text-align: left">
+                        <li class="pure-menu-item"><a href="Book.php?action=seats" class="pure-menu-link">Seat</a></li>
+                        <li class="pure-menu-item"><a href="Book.php?action=teamroom" class="pure-menu-link">Team Room</a></li>
+                        <li class="pure-menu-item"><a href="Book.php?action=conferenceroom" class="pure-menu-link">Conference Room</a></li>
                     </ul>
                 </li>
-                <li class="pure-menu-item"><a href="Book.php?action=cart#content" class="pure-menu-link">Cart</a></li>
-                <li class="pure-menu-item"><a href="History.php#content" class="pure-menu-link">History</a></li>
-                <li class="pure-menu-item"><a href="Contact.php#content" class="pure-menu-link">Contact</a></li>
+                <li class="pure-menu-item">
+                    <a href="Book.php?action=cart#content" class="pure-menu-link">
+                        <i class="fa fa-shopping-cart"></i> Cart
+                    </a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="History.php#content" class="pure-menu-link">
+                        <i class="fa fa-history"></i> History
+                    </a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="Contact.php#content" class="pure-menu-link">
+                        <i class="fa fa-phone"></i> Contact
+                    </a>
+                </li>
             </ul>
+
         </div>
     </div>
     <!-------------------------------Personal Information------------>
-    <div class="pure-u-1-8" style="width:200px" id="user">
-    	<div class="pure-menu pure-menu-horizontal" id="tuckedMenu" align="center">
-            <ul class="pure-menu-list">
-                <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                    <a id="menuLink1" class="pure-menu-link"><?php echo usersDao::instance()->getName($_SESSION['user']); ?></a>
-                    <ul class="pure-menu-children">
-                        <li class="pure-menu-item"><a href="Personal.php?action=editPass" class="pure-menu-link">Change Password</a></li>
-                        <li class="pure-menu-item"><a href="Personal.php" class="pure-menu-link">Edit Information</a></li>
-                        <li class="pure-menu-item"><a href="../Logout.php" class="pure-menu-link">Logout</a></li>
-                    </ul>
-                </li>
-			</ul>
-		</div>
-    </div>
+      <div class="pure-u-1-4" id="user">
+          <div class="pure-menu pure-menu-horizontal" id="tuckedMenu">
+              <ul class="pure-menu-list">
+                  <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                      <a id="menuLink1" class="pure-menu-link">
+                          <i class="fa fa-user"></i>
+                          <?php echo usersDao::instance()->getName($_SESSION['user']); ?>
+                      </a>
+                      <ul class="pure-menu-children">
+                          <li class="pure-menu-item"><a href="Personal.php?action=editPass" class="pure-menu-link">
+                                  <i class="fa fa-key"></i> Change Password</a></li>
+                          <li class="pure-menu-item"><a href="Personal.php" class="pure-menu-link">
+                                  <i class="fa fa-pencil-square-o"></i> Edit Information</a></li>
+                          <li class="pure-menu-item"><a href="../Logout.php" class="pure-menu-link">
+                                  <i class="fa fa-sign-out"></i> Logout</a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+      </div>
     
 </div>
 </div>
@@ -170,15 +197,14 @@ session_start();
     </div>
 </div>
 <!-------------------------------------------------Common-------------------------------------->
-<div id="common" style="background:#099;width:100%;height:60px;" align="right">
-		
-    	<span>Connect with Us</span>
-        <a href="https://www.facebook.com"><img src="../../images/facebook-3-xxl.png" /></a>
-        <a href="https://plus.google.com"><img src="../../images/google-plus-6-xxl.png" /></a>
-        <a href="https://www.instagram.com"><img src="../../images/instagram-xxl.png" /></a>
-        <a href="https://twitter.com"><img src="../../images/twitter-3-xxl.png" /></a>
-        <a href="https://www.youtube.com"><img src="../../images/youtube-3-xxl.png" /></a>
-        <a href="https://www.pinterest.com"><img src="../../images/pinterest-3-xxl.png" /></a>
+<div id="common">
+    <span>Connect with us</span>
+    <a href="https://www.facebook.com"><i class="fa fa-facebook-square"></i></a>
+    <a href="https://plus.google.com"><i class="fa fa-google-plus-square"></i></a>
+    <a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a>
+    <a href="https://twitter.com"><i class="fa fa-twitter-square"></i></a>
+    <a href="https://www.youtube.com"><i class="fa fa-youtube-square"></i></a>
+    <a href="https://www.pinterest.com"><i class="fa fa-pinterest-square"></i></a>
 </div>
 </body>
 </html>

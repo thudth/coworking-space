@@ -28,10 +28,11 @@
     <td><?php echo historyDao::instance()->getOrderPayingAmount($a->getcode())." 000 vnd"; ?></td>
     <td><?php echo $a->getorderStateName(); ?></td>
     <?php if($a->getorderState()==1){ ?>
-        <td><a href="?action=detail&id=<?php echo $a->getcode(); ?>#content">Detail</a></td>
-        <td><a href="?action=cancel&id=<?php echo $a->getcode(); ?>" onclick="return confirm('Do you want to cancel order <?php echo $a->getcode()?>')">Cancel</a></td>
+        <td><a href="?action=detail&id=<?php echo $a->getcode(); ?>#content"><i class="fa fa-eye"></i> Detail</a></td>
+        <td><a href="?action=cancel&id=<?php echo $a->getcode(); ?>" onclick="return confirm('Do you want to cancel order <?php echo $a->getcode()?>')">
+                <i class="fa fa-trash"></i> Cancel</a></td>
     <?php } else { ?>
-        <td colspan="2"><a href="?action=detail&id=<?php echo $a->getcode(); ?>#content">Details</a></td>
+        <td colspan="2"><a href="?action=detail&id=<?php echo $a->getcode(); ?>#content"><i class="fa fa-eye"></i> Detail</a></td>
     <?php }?>
   </tr>
   <?php }?>

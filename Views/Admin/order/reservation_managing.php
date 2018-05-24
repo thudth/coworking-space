@@ -39,8 +39,8 @@
 </div>
 </form>
 </div>
-<div>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="880px">
+<div style="width: 100%">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
   <thead>
     <tr>
       <th scope="col">STT</th>
@@ -63,14 +63,14 @@
       <td><?php echo $a->getorderStateName();?></td>
       <td><?php echo $a->getconfirmStaffMember();?></td>
       <td>
-          <?php 
+          <?php
           if($a->getorderState()==1)
-              echo "<a href='?action=upStatus&id=".$a->getcode()."'>Update Status</a>";
+              echo "<a href='?action=upStatus&id=".$a->getcode()."'><i class='fa fa-arrow-up'></i> Update Status</a>";
           else if($a->getorderState()==2)
               //echo $a->getorderState();
-              echo "<a href='?action=allocate&id=".$a->getcode()."'>Allocating</a>";
+              echo "<a href='?action=allocate&id=".$a->getcode()."'><i class='fa fa-cogs'></i> Allocating</a>";
           else 
-              echo "<a href='?action=detail&id=".$a->getcode()."'>Detail</a>";
+              echo "<a href='?action=detail&id=".$a->getcode()."'><i class='fa fa-eye'></i> Detail</a>";
           ?>
       </td>
     </tr>
@@ -78,6 +78,7 @@
   </tbody>
 </table><br />
 
+    <div class="ui buttons">
   <?php
   //Hien thi nut nhan trang___________________________________________________
   //Lay lai so trang hien tai
@@ -91,25 +92,36 @@
   {
 	  if ($trang==1)
 	  {
-		  echo "<a href=".$aTag."&page=$trang> Trang $trang </a> &nbsp&nbsp";
-		  echo "<a href=".$aTag."&page=$trangsau> Trang Sau </a>";
+		  echo "<a class='ui button active' href=".$aTag."&page=$trang>$trang</a>";
+		  echo "<a class='ui button' href=".$aTag."&page=$trangsau>Next <i class='fa fa-angle-double-right'></i></a>";
 	  }
 	  else if ($trang==$tongtrang)
 	  {
-		  echo "<a href=".$aTag."&page=$trangtruoc> Trang Trước </a>&nbsp&nbsp";
-		  echo "<a href=".$aTag."&page=$trang> Trang $trang </a>";
+		  echo "<a class='ui button' href=".$aTag."&page=$trangtruoc><i class='fa fa-angle-double-left'></i> Previous</a>";
+		  echo "<a class='ui button active' href=".$aTag."&page=$trang>$trang</a>";
 	  }
 	  else
 	  {
-		  echo "<a href=".$aTag."&page=$trangtruoc> Trang Trước </a>&nbsp&nbsp";
-		  echo "<a href=".$aTag."&page=$trang> $trang </a>&nbsp&nbsp";
-		  echo "<a href=".$aTag."&page=$trangsau> Trang Sau </a>";
+		  echo "<a class='ui button' href=".$aTag."&page=$trangtruoc><i class='fa fa-angle-double-left'></i> Previous</a>";
+		  echo "<a class='ui button active' href=".$aTag."&page=$trang>$trang</a>";
+		  echo "<a class='ui button' href=".$aTag."&page=$trangsau>Next <i class='fa fa-angle-double-right'></i></a>";
 	  }
   }
-  else 
-	  for ($i=1;$i<=$tongtrang;$i++)
-		  echo "<a href=".$aTag."&page=$i>Trang $i</a>&nbsp&nbsp";
+  else
+  {
+      for ($i=1;$i<=$tongtrang;$i++) {
+          if ($i== $trang)
+          {
+              echo "<a class='ui button active' href=".$aTag."&page=$i>$i</a>";
+          }
+          else
+          {
+              echo "<a class='ui button' href=".$aTag."&page=$i>$i</a>";
+          }
+      }
+  }
   ?>
+    </div>
 </div>
 </body>
 </html>

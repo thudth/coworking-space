@@ -18,12 +18,12 @@ table
 
 <body>
 <h2>Order Status</h2>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="500px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
 <thead>
   <tr>
     <th scope="col">Code</th>
     <th scope="col">Status</th>
-    <th colspan="2"><a href="?action=insert">Add</a></th>
+    <th colspan="2"><a href="?action=insert"><i class="fa fa-plus"></i> New status</a></th>
   </tr>
 </thead>
 <tbody>
@@ -33,9 +33,9 @@ table
   <tr>
     <td><?php echo $orderstateDto->getcode(); ?></td>
     <td><?php echo $orderstateDto->getstatus();?></td>
-    <td><a href="?action=edit&id=<?php echo $orderstateDto->getcode(); ?>">Edit</a></td>
+    <td><a href="?action=edit&id=<?php echo $orderstateDto->getcode(); ?>"><i class="fa fa-edit"></i> Edit</a></td>
     <td><a href="?action=delete&id=<?php echo $orderstateDto->getcode(); ?>"
-    	onclick="return confirm ('Delete <?php echo $orderstateDto->getcode(); ?>')">Delete</a></td>
+    	onclick="return confirm ('Delete <?php echo $orderstateDto->getcode(); ?>')"><i class="fa fa-trash"></i> Delete</a></td>
   </tr>
   <?php } ?>
 </tbody>

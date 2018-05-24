@@ -69,10 +69,15 @@ function validate()
 			</tr>
 			<tr>
 				<td align="center" colspan="3">
-                    <input type="submit" value="Add to CART" name="book" id="submit" class="pure-button pure-button-primary" onclick="return validate()"/>
-                	<input type="reset" value="Clear" id="button" class="pure-button pure-button-active"/><br />
-                    <a href="?action=cart#content" style="float:left; font-size:17px">Go to cart</a>
-                	<a href="Book.php#content" style="float:right; font-size:17px">Back</a>
+                    <button type="submit" name="book" id="submit" class="pure-button pure-button-primary"
+                            onclick="return validate()">
+                        <i class="fa fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button type="reset" class="pure-button pure-button-active"><i class="fa fa-undo"></i> Clear
+                    </button>
+                    <br>
+                    <a href="?action=cart#content" style="float:left; font-size:17px"><i class="fa fa-shopping-cart"></i> Go to cart</a>
+                    <a href="Book.php#content" style="float:right; font-size:17px"><i class="fa fa-arrow-left"></i> Back</a>
 				</td>       
 			</tr>
 		</table>

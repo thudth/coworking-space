@@ -18,14 +18,14 @@ table
 <body>
 <div>
 <h2>Team room Types</h2>
-<table border="1" cellspacing="0" class="pure-table pure-table-horizontal" width="880px">
+<table border="1" cellspacing="0" class="pure-table pure-table-horizontal">
 <thead>
   <tr>
     <th scope="col">Code</th>
     <th scope="col">Room type</th>
     <th scope="col">Price per month</th>
     <th scope="col">Note</th>
-    <th colspan="2"><a href="?action=add">Add</a></th>
+    <th colspan="2"><a href="?action=add"><i class="fa fa-plus"></i> New Type</a></th>
   </tr>
 </thead>
 <tbody>
@@ -37,9 +37,9 @@ table
     <td><?php echo $teamroomtypesDto->getname(); ?></td>
     <td><?php echo $teamroomtypesDto->getpricePerMonth(); ?></td>
     <td><?php echo $teamroomtypesDto->getnote(); ?></td>
-    <td><a href="?action=edit&id=<?php echo $teamroomtypesDto->getcode();?>">Edit</a></td>
+    <td><a href="?action=edit&id=<?php echo $teamroomtypesDto->getcode();?>"><i class="fa fa-edit"></i> Edit</a></td>
 	<td><a href="?action=delete&id=<?php echo $teamroomtypesDto->getcode();?>"
-    	onclick="return confirm ('Delete <?php echo $teamroomtypesDto->getcode();?>')">Delete</a></td>
+    	onclick="return confirm ('Delete <?php echo $teamroomtypesDto->getcode();?>')"><i class="fa fa-trash"></i> Delete</a></td>
   </tr>
   <?php }?>
 </tbody>
