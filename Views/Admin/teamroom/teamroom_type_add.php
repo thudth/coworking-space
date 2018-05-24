@@ -70,7 +70,7 @@ function validate()
                         <i class="fa fa-save"></i> Save
                     </button>
                     <button type="reset" id="button" class="pure-button pure-button-active">
-                        <i class="fa fa-undo"></i> Reset
+                        <i class="fa fa-undo"></i> Clear
                     </button>
 				</td>
 			</tr>
