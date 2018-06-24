@@ -16,7 +16,8 @@ session_start();
   include("../../Model/Dao/baseDao.php");
   include("../../Model/Dao/bookDao.php");
   include("../../Model/Dao/usersDao.php");
-  
+  include("../../Model/Dao/ordersDao.php");
+
   include("../../Model/Logic/bookLogic.php");
   include("../../Views/Member/booking/bookView.php");
   

@@ -144,11 +144,52 @@ class bookController
 					}
 					else
 					{
+					    //Kiểm tra xem đã có còn phòng để cho thuê hay không?
+                        if (isset($_SESSION['seatStart'])) {
+                            for ($i = 0; $i < count($_SESSION['seatStart']); $i++) {
+                                $seatBookingDetailDto = new seatbookingdetailDto();
+                                $seatBookingDetailDto->setstartingDate($_SESSION['seatStart'][$i]);
+                                $seatBookingDetailDto->setfinishingDate($_SESSION['seatFinish'][$i]);
+                                $count = ordersDao::instance()->getCountSeats($seatBookingDetailDto);
+                                if ($count == 0) {
+                                    //Thông báo là hết chỗ nhé (cho thời gian này nhé)
+                                }
+                            }
+                        }
+
+                        if (isset($_SESSION['TeamRoomStart'])) {
+                            for ($i = 0; $i < count($_SESSION['TeamRoomStart']); $i++) {
+                                $teamroomBookingDetailDto = new teamroombookingdetailDto();
+                                $teamroomBookingDetailDto->setroomType($_SESSION['TeamRoomType'][$i]);
+                                $teamroomBookingDetailDto->setlengthoftime($_SESSION['TeamRoomLengthTime'][$i]);
+                                $teamroomBookingDetailDto->setstartingDate($_SESSION['TeamRoomStart'][$i]);
+                                $teamroomBookingDetailDto->setfinishingDate($_SESSION['TeamRoomFinish'][$i]);
+                                $count = ordersDao::instance()->getCountTeamrooms($teamroomBookingDetailDto);
+                                if ($count == 0) {
+                                    //Thông báo là hết chỗ nhé (cho thời gian này nhé)
+                                }
+                            }
+                        }
+
+                        if (isset($_SESSION['ConfRoomStart'])) {
+                            for ($i = 0; $i < count($_SESSION['ConfRoomStart']); $i++) {
+                                $confroomBookingDetailDto = new conferenceroombookingdetailDto();
+                                $confroomBookingDetailDto->setroomType($_SESSION['ConfRoomType'][$i]);
+                                $confroomBookingDetailDto->setdate($_SESSION['ConfRoomDate'][$i]);
+                                $confroomBookingDetailDto->setstartingTime($_SESSION['ConfRoomStart'][$i]);
+                                $confroomBookingDetailDto->setfinishingTime($_SESSION['ConfRoomFinish'][$i]);
+                                $count = ordersDao::instance()->getCountConferenceRoom($confroomBookingDetailDto);
+                                if ($count == 0) {
+                                    //Thông báo là hết chỗ nhé (cho thời gian này nhé)
+                                }
+                            }
+                        }
+
 						//Hien thi gio hang------------------------------------------------------------------------------------------------------------------
 						$seatPrice=bookLogic::instance()->SeatPrice();
 						$TeamRoomPrice=bookLogic::instance()->TeamRoomTypes();	
 						$ConferenceRoomPrice=bookLogic::instance()->ConferenceRoomTypes();
-						
+
 						$orderDto= new ordersDto();
 						$orderDto->setusername($_SESSION['user']);
 						//echo $this->executeSelect("select concat(users.firstName , ' ', users.lastName) as name FROM users where username='".$_SESSION['user']."'");

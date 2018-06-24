@@ -1,4 +1,4 @@
-<?php 
+<?php
 	class ordersDao extends baseDao
 	{
 		public static function instance()
@@ -41,7 +41,7 @@
 			$query=$this->QuerySelect();
 			$result = $this->executeSelectPart($query);
 			while($row = mysqli_fetch_array($result))
-			{							
+			{
 				$ordersDto=$this->getDtoFromRow($row);
 				$arr[] = $ordersDto;
 			}
@@ -53,7 +53,7 @@
 			$query=$this->QuerySelect();
 			return $this->CountRecordExecuteSelect($query);
 		}
-		
+
 	//Order detail----------------------------------------------------------------------------------------
 		//Seat Detail---------------------------------------------------------------
 		public function getSeatDetail($ordercode)
@@ -64,7 +64,7 @@
 								where ordercode	='$ordercode'";
 				$result = $this->executeSelect($query);
 				while($row = mysqli_fetch_array($result))
-				{							
+				{
 					$seatbookingdetailDto = new seatbookingdetailDto();
 					$seatbookingdetailDto->setcode($row["code"]);
 					$seatbookingdetailDto->setstartingDate($row["startingDate"]);
@@ -76,7 +76,7 @@
 				$this->DisConnectDB();
 				return $arr;
 			}
-			
+
 		//Teamroom Detail----------------------------------------------------------
 		public function getTeamRoomDetail($ordercode)
 			{
@@ -88,7 +88,7 @@
 								where ordercode='$ordercode'";
 				$result = $this->executeSelect($query);
 				while($row = mysqli_fetch_array($result))
-				{							
+				{
 					$teamroombookingdetailDto = new teamroombookingdetailDto();
 					$teamroombookingdetailDto->setcode($row["code"]);
 					$teamroombookingdetailDto->setroomType($row["roomType"]);
@@ -102,8 +102,8 @@
 				}
 				$this->DisConnectDB();
 				return $arr;
-			}	
-			
+			}
+
 		//Conference Room Detail----------------------------------------------------------
 		public function getConferenceRoomDetail($ordercode)
 			{
@@ -114,7 +114,7 @@
 								where ordercode='$ordercode'";
 				$result = $this->executeSelect($query);
 				while($row = mysqli_fetch_array($result))
-				{							
+				{
 					$conferenceroombookingdetailDto = new conferenceroombookingdetailDto();
 					$conferenceroombookingdetailDto->setcode($row["code"]);
 					$conferenceroombookingdetailDto->setroomType($row["roomType"]);
@@ -153,7 +153,7 @@
 					AND seatNumber is not null)";
 				$result = $this->executeSelect($query);
 				while($row = mysqli_fetch_array($result))
-				{							
+				{
 					$seatsFit = new seatsDto();
 					$seatsFit->setcode($row["code"]);
 					$seatsFit->setseatnumber($row["seatNumber"]);
@@ -163,6 +163,28 @@
 				$this->DisConnectDB();
 				return $arr;
 			}
+
+        public function getCountSeats($seatbookingdetailDto)
+        {
+            // Đếm xem có bao nhiêu chỗ đã dùng và sẽ phải dùng
+            $querySeatsBooked = "SELECT count(*) as count FROM seatbookingdetail WHERE 
+                        ( 
+                            (startingDate>='".$seatbookingdetailDto->getstartingDate()."' AND startingDate>='".$seatbookingdetailDto->getfinishingDate()."') 
+                            OR (startingDate<='".$seatbookingdetailDto->getstartingDate()."' AND finishingDate >= '".$seatbookingdetailDto->getstartingDate()."') 
+                            OR (finishingDate>='".$seatbookingdetailDto->getstartingDate()."' AND finishingDate<='".$seatbookingdetailDto->getfinishingDate()."') 
+                            OR (startingDate<='".$seatbookingdetailDto->getfinishingDate()."' AND finishingDate>='".$seatbookingdetailDto->getfinishingDate()."') 
+                        )";
+            $resultSeatsBooked = $this->executeSelect($querySeatsBooked);
+            $rowSeatsBooked = mysqli_fetch_array($resultSeatsBooked);
+
+            //Đếm tổng số chỗ có sẵn
+            $querySeats = "select COUNT(*) as count FROM seats";
+            $resultSeats = $this->executeSelect($querySeats);
+            $rowSeats = mysqli_fetch_array($resultSeats);
+
+            // Đếm xem có bao nhiêu chỗ còn trống (chưa cần phải sử dụng)
+            return $rowSeats['count'] - $rowSeatsBooked['count'];
+        }
 			//Teamroom-------------------------------------------
 		public function getTeamroomsFit($teamroombookingdetailDto)
 			{
@@ -179,8 +201,8 @@
 			)
 			AND roomNumber is not null
 			)
-			AND roomType>='".$teamroombookingdetailDto->getroomType()."'";
-				
+			AND CONVERT(SUBSTRING(roomType, 3),UNSIGNED)>=".substr($teamroombookingdetailDto->getroomType(),2);
+
 				$result = $this->executeSelect($query);
 				while($row = mysqli_fetch_array($result))
 				{
@@ -194,8 +216,30 @@
 				$this->DisConnectDB();
 				return $arr;
 			}
-			
-			
+
+        public function getCountTeamrooms($teamroombookingdetailDto)
+        {
+            // Đếm xem có bao nhiêu chỗ đã dùng và sẽ phải dùng
+            $queryTeamroomsBooked = "SELECT count(*) as count FROM teamroombookingdetail 
+                                WHERE (
+                                     (startingDate>='" . $teamroombookingdetailDto->getstartingDate() . "' AND startingDate>='" . $teamroombookingdetailDto->getfinishingDate() . "') 
+                                     OR (startingDate<='" . $teamroombookingdetailDto->getstartingDate() . "' AND finishingDate >= '" . $teamroombookingdetailDto->getstartingDate() . "') 
+                                     OR (finishingDate>='" . $teamroombookingdetailDto->getstartingDate() . "' AND finishingDate<='" . $teamroombookingdetailDto->getfinishingDate() . "') 
+                                     OR (startingDate<='" . $teamroombookingdetailDto->getfinishingDate() . "' AND finishingDate>='" . $teamroombookingdetailDto->getfinishingDate() . "') 
+                                 ) ";
+            $resultTeamroomsBooked = $this->executeSelect($queryTeamroomsBooked);
+            $rowTeamroomsBooked = mysqli_fetch_array($resultTeamroomsBooked);
+
+            //Đếm tổng số chỗ có sẵn
+            $queryTeamrooms = "select count(*) as count FROM teamrooms 
+                        WHERE CONVERT(SUBSTRING(roomType, 3),UNSIGNED) >= " . substr($teamroombookingdetailDto->getroomType(), 2);
+            $resultTeamrooms = $this->executeSelect($queryTeamrooms);
+            $rowTeamrooms = mysqli_fetch_array($resultTeamrooms);
+
+            // Đếm xem có bao nhiêu chỗ còn trống (chưa cần phải sử dụng)
+            return $rowTeamrooms['count'] - $rowTeamroomsBooked['count'];
+        }
+
 			//ConferenceRoomFit($ConferenceRoombookingdetailDto)
 			public function getConferenceRoomFit($conferenceroombookingdetailDto)
 			{
@@ -214,8 +258,8 @@
 		AND date ='".$conferenceroombookingdetailDto->getdate()."'
 		AND roomNumber is not null
 		)
-		AND roomType>='".$conferenceroombookingdetailDto->getroomType()."'";
-				
+		AND CONVERT(SUBSTRING(roomType, 3),UNSIGNED) >=".substr($conferenceroombookingdetailDto->getroomType(),2);
+
 				$result = $this->executeSelect($query);
 				while($row = mysqli_fetch_array($result))
 				{
@@ -229,27 +273,50 @@
 				$this->DisConnectDB();
 				return $arr;
 			}
+
+        public function getCountConferenceRoom($conferenceroombookingdetailDto)
+        {
+            // Đếm xem có bao nhiêu chỗ đã dùng và sẽ phải dùng
+            $queryTeamroomsBooked = "SELECT COUNT(*) as count FROM conferenceroombookingdetail WHERE 
+                                 (
+                                     (startingTime>=" . $conferenceroombookingdetailDto->getstartingTime() . " AND startingTime>=" . $conferenceroombookingdetailDto->getfinishingTime() . ") 
+                                     OR (startingTime<=" . $conferenceroombookingdetailDto->getstartingTime() . " AND finishingTime >=" . $conferenceroombookingdetailDto->getstartingTime() . ") 
+                                     OR (finishingTime>=" . $conferenceroombookingdetailDto->getstartingTime() . " AND finishingTime<=" . $conferenceroombookingdetailDto->getfinishingTime() . ") 
+                                     OR (startingTime<=" . $conferenceroombookingdetailDto->getfinishingTime() . " AND finishingTime>=" . $conferenceroombookingdetailDto->getfinishingTime() . ") 
+                                 )  AND date ='" . $conferenceroombookingdetailDto->getdate() . "'";
+            $resultTeamroomsBooked = $this->executeSelect($queryTeamroomsBooked);
+            $rowTeamroomsBooked = mysqli_fetch_array($resultTeamroomsBooked);
+    
+            //Đếm tổng số chỗ có sẵn
+            $queryTeamrooms = "SELECT COUNT(*) as count FROM `conferencerooms` 
+                            WHERE CONVERT(SUBSTRING(roomType, 3),UNSIGNED)>=" . substr($conferenceroombookingdetailDto->getroomType(), 2);
+            $resultTeamrooms = $this->executeSelect($queryTeamrooms);
+            $rowTeamrooms = mysqli_fetch_array($resultTeamrooms);
+
+            // Đếm xem có bao nhiêu chỗ còn trống (chưa cần phải sử dụng)
+            return $rowTeamrooms['count'] - $rowTeamroomsBooked['count'];
+        }
 		//Update Allocate (Admin chọn phòng, sau đó đc lưu vào db)----------------------------------------------
 		public function allocateSeat($seatsDto)
-		{			
+		{
 			$query = "update seatbookingdetail set seatNumber ='".$seatsDto->getseatNumber()."'
 									where code ='".$seatsDto->getcode()."'";
-			$this->executeNonQuery($query);	
+			$this->executeNonQuery($query);
 		}
 		public function allocateTeamRoom($teamroomDto)
-		{			
+		{
 			$query = "update teamroombookingdetail set roomNumber ='".$teamroomDto->getroomNumber()."'
 									where code ='".$teamroomDto->getcode()."'";
-				$this->executeNonQuery($query);	
+				$this->executeNonQuery($query);
 		}
 		public function allocateConferenceRoom($conferenceRoomDto)
-		{			
+		{
 			$query = "update conferenceroombookingdetail set roomNumber ='".$conferenceRoomDto->getroomNumber()."'
 									where code ='".$conferenceRoomDto->getcode()."'";
-			$this->executeNonQuery($query);	
+			$this->executeNonQuery($query);
 		}
-			
-		//Update tình trạng------------------------------------------------------------------------------------	
+
+		//Update tình trạng------------------------------------------------------------------------------------
 		public function updateInforAllocate($ordercode)
 		{
 			session_start();
