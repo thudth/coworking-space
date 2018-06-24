@@ -68,12 +68,12 @@ session_start();
                 <li class="pure-menu-item" id="title">
                     <a href="UserManaging.php" class="pure-menu-link">
                         <i class="fa fa-users"></i> User Managing</a></li>
-                <li class="pure-menu-item" id="title">
-                    <a href="Roles.php" class="pure-menu-link">
-                        <i class="fa fa-user-times"></i> Role (User)</a></li>
-                <li class="pure-menu-item" id="title">
-                    <a href="Orderstate.php" class="pure-menu-link">
-                        <i class="fa fa-cogs"></i> Order State</a></li>
+<!--                <li class="pure-menu-item" id="title">-->
+<!--                    <a href="Roles.php" class="pure-menu-link">-->
+<!--                        <i class="fa fa-user-times"></i> Role (User)</a></li>-->
+<!--                <li class="pure-menu-item" id="title">-->
+<!--                    <a href="Orderstate.php" class="pure-menu-link">-->
+<!--                        <i class="fa fa-cogs"></i> Order State</a></li>-->
             </ul>
         </div>
         <a href="https://www.facebook.com"><i class="fa fa-facebook-square link-icon"></i></a>
