@@ -277,24 +277,24 @@
         public function getCountConferenceRoom($conferenceroombookingdetailDto)
         {
             // Đếm xem có bao nhiêu chỗ đã dùng và sẽ phải dùng
-            $queryTeamroomsBooked = "SELECT COUNT(*) as count FROM conferenceroombookingdetail JOIN orders ON conferenceroombookingdetail.ordercode=orders.code WHERE 
+            $queryConferenceRoomsBooked = "SELECT COUNT(*) as count FROM conferenceroombookingdetail JOIN orders ON conferenceroombookingdetail.ordercode=orders.code WHERE 
                                  (
                                      (startingTime>=" . $conferenceroombookingdetailDto->getstartingTime() . " AND startingTime>=" . $conferenceroombookingdetailDto->getfinishingTime() . ") 
                                      OR (startingTime<=" . $conferenceroombookingdetailDto->getstartingTime() . " AND finishingTime >=" . $conferenceroombookingdetailDto->getstartingTime() . ") 
                                      OR (finishingTime>=" . $conferenceroombookingdetailDto->getstartingTime() . " AND finishingTime<=" . $conferenceroombookingdetailDto->getfinishingTime() . ") 
                                      OR (startingTime<=" . $conferenceroombookingdetailDto->getfinishingTime() . " AND finishingTime>=" . $conferenceroombookingdetailDto->getfinishingTime() . ") 
                                  ) AND orderstate!=4 AND date ='" . $conferenceroombookingdetailDto->getdate() . "'";
-            $resultTeamroomsBooked = $this->executeSelect($queryTeamroomsBooked);
-            $rowTeamroomsBooked = mysqli_fetch_array($resultTeamroomsBooked);
+            $resultConferenceRoomsBooked = $this->executeSelect($queryConferenceRoomsBooked);
+            $rowConferenceRoomsBooked = mysqli_fetch_array($resultConferenceRoomsBooked);
     
             //Đếm tổng số chỗ có sẵn
-            $queryTeamrooms = "SELECT COUNT(*) as count FROM `conferencerooms` 
+           $queryConferenceRooms = "SELECT COUNT(*) as count FROM `conferencerooms` 
                             WHERE CONVERT(SUBSTRING(roomType, 3),UNSIGNED)>=" . substr($conferenceroombookingdetailDto->getroomType(), 2);
-            $resultTeamrooms = $this->executeSelect($queryTeamrooms);
-            $rowTeamrooms = mysqli_fetch_array($resultTeamrooms);
+            $resultConferenceRooms = $this->executeSelect($queryConferenceRooms);
+            $rowConferenceRooms = mysqli_fetch_array($resultConferenceRooms);
 
             // Đếm xem có bao nhiêu chỗ còn trống (chưa cần phải sử dụng)
-            return $rowTeamrooms['count'] - $rowTeamroomsBooked['count'];
+            return $rowConferenceRooms['count'] - $rowConferenceRoomsBooked['count'];
         }
 		//Update Allocate (Admin chọn phòng, sau đó đc lưu vào db)----------------------------------------------
 		public function allocateSeat($seatsDto)
