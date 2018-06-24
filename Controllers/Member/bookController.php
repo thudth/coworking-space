@@ -10,13 +10,13 @@ class bookController
 		$action="";
 		if(isset($_GET['action']))
 			$action=htmlentities($_GET['action']);
-			
+
 		switch($action)
 		{
 			case "":
 			{
 				$seatPrice=bookLogic::instance()->SeatPrice();
-				$TeamRoomPrice=bookLogic::instance()->TeamRoomTypes();	
+				$TeamRoomPrice=bookLogic::instance()->TeamRoomTypes();
 				$ConferenceRoomPrice=bookLogic::instance()->ConferenceRoomTypes();
 				bookView::BangGia($seatPrice,$TeamRoomPrice,$ConferenceRoomPrice);
 				break;
@@ -48,7 +48,7 @@ class bookController
 						$teamroombook->setroomType(htmlentities($_POST['roomtype']));
 						$teamroombook->setlengthoftime(htmlentities($_POST['duration']));
 						$teamroombook->setstartingDate(htmlentities($_POST['startdate']));
-						
+
 						$lengthUse= $teamroombook->getlengthoftime()*30;//Tính thời lượng sử dụng phòng
 						$teamroombook->setfinishingDate(strftime("%Y-%m-%d",strtotime(date("Y-m-d", //Chuyển sang dạng date
 										strtotime($teamroombook->getstartingDate()))."+".$lengthUse." day"))); //Cộng với thời lượng sử dụng để trả về ngày cuối
@@ -79,7 +79,7 @@ class bookController
 					{
 						$ConferenceRoomType=bookLogic::instance()->ConferenceRoomTypes();
 						bookView::ConferenceRoomBook($ConferenceRoomType);
-					}			
+					}
 				break;
 			}
 //giỏ hàng ________________________________________________________________________________________________________________________________________________
@@ -90,57 +90,56 @@ class bookController
 					//Đặt Hàng (Lưu vào DB)_______________________________________________________________________________________________________________
 					if(isset($_POST['insert']) && (isset($_SESSION['seatStart']) || isset($_SESSION['TeamRoomStart']) || isset($_SESSION['ConfRoomStart'])))
 					{
-						bookDao::instance()->insertOrder();
-						//Insert Seat Booking Detail-------------------------------------
-						if(isset($_SESSION['seatStart']))
-						{
-							for($i=0;$i<count($_SESSION['seatStart']);$i++)
-							{
-								$seatBookingDetailDto= new seatbookingdetailDto();
-								$seatBookingDetailDto->setstartingDate($_SESSION['seatStart'][$i]);
-								$seatBookingDetailDto->setfinishingDate($_SESSION['seatFinish'][$i]);
-								bookDao::instance()->insertSeatDetail($seatBookingDetailDto);
-							}
-							unset ($_SESSION['seatStart']);
-							unset ($_SESSION['seatFinish']);
-						}
-						//Insert Team Room Booking Detail-------------------------------------						
-						if(isset($_SESSION['TeamRoomStart']))
-						{
-
-							for($i=0;$i<count($_SESSION['TeamRoomStart']);$i++)
-							{
-								$teamroomBookingDetailDto= new teamroombookingdetailDto();
-								$teamroomBookingDetailDto->setroomType($_SESSION['TeamRoomType'][$i]);
-								$teamroomBookingDetailDto->setlengthoftime($_SESSION['TeamRoomLengthTime'][$i]);
-								$teamroomBookingDetailDto->setstartingDate($_SESSION['TeamRoomStart'][$i]);
-								$teamroomBookingDetailDto->setfinishingDate($_SESSION['TeamRoomFinish'][$i]);
-								bookDao::instance()->insertTeamRoomDetail($teamroomBookingDetailDto);
-							}
-							unset ($_SESSION['TeamRoomType']);
-							unset ($_SESSION['TeamRoomLengthTime']);
-							unset ($_SESSION['TeamRoomStart']);
-							unset ($_SESSION['TeamRoomFinish']);
-						}
-						//Insert Conference Room Booking Detail-------------------------------------						
-						if(isset($_SESSION['ConfRoomStart']))
-						{
-
-							for($i=0;$i<count($_SESSION['ConfRoomStart']);$i++)
-							{
-								$confroomBookingDetailDto= new conferenceroombookingdetailDto();
-								$confroomBookingDetailDto->setroomType($_SESSION['ConfRoomType'][$i]);
-								$confroomBookingDetailDto->setdate($_SESSION['ConfRoomDate'][$i]);
-								$confroomBookingDetailDto->setstartingTime($_SESSION['ConfRoomStart'][$i]);
-								$confroomBookingDetailDto->setfinishingTime($_SESSION['ConfRoomFinish'][$i]);
-								bookDao::instance()->insertConfRoomDetail($confroomBookingDetailDto);
-							}
-							unset ($_SESSION['ConfRoomType']);
-							unset ($_SESSION['ConfRoomDate']);
-							unset ($_SESSION['ConfRoomStart']);
-							unset ($_SESSION['ConfRoomFinish']);
-						}
-						common::redirectPage('History.php');
+                        if (!$this->checkBook()) {
+                            common::redirectPage('Book.php?action=cart&bookErr#content');
+                        } else {
+                            bookDao::instance()->insertOrder();
+                            //Insert Seat Booking Detail-------------------------------------
+                            if (isset($_SESSION['seatStart'])) {
+                                for ($i = 0; $i < count($_SESSION['seatStart']); $i++) {
+                                    $seatBookingDetailDto = new seatbookingdetailDto();
+                                    $seatBookingDetailDto->setstartingDate($_SESSION['seatStart'][$i]);
+                                    $seatBookingDetailDto->setfinishingDate($_SESSION['seatFinish'][$i]);
+                                    bookDao::instance()->insertSeatDetail($seatBookingDetailDto);
+                                }
+                                unset ($_SESSION['seatStart']);
+                                unset ($_SESSION['seatFinish']);
+                                unset ($_SESSION['seatMessages']);
+                            }
+                            //Insert Team Room Booking Detail-------------------------------------
+                            if (isset($_SESSION['TeamRoomStart'])) {
+                                for ($i = 0; $i < count($_SESSION['TeamRoomStart']); $i++) {
+                                    $teamroomBookingDetailDto = new teamroombookingdetailDto();
+                                    $teamroomBookingDetailDto->setroomType($_SESSION['TeamRoomType'][$i]);
+                                    $teamroomBookingDetailDto->setlengthoftime($_SESSION['TeamRoomLengthTime'][$i]);
+                                    $teamroomBookingDetailDto->setstartingDate($_SESSION['TeamRoomStart'][$i]);
+                                    $teamroomBookingDetailDto->setfinishingDate($_SESSION['TeamRoomFinish'][$i]);
+                                    bookDao::instance()->insertTeamRoomDetail($teamroomBookingDetailDto);
+                                }
+                                unset ($_SESSION['TeamRoomType']);
+                                unset ($_SESSION['TeamRoomLengthTime']);
+                                unset ($_SESSION['TeamRoomStart']);
+                                unset ($_SESSION['TeamRoomFinish']);
+                                unset ($_SESSION['TeamRoomMessages']);
+                            }
+                            //Insert Conference Room Booking Detail-------------------------------------
+                            if (isset($_SESSION['ConfRoomStart'])) {
+                                for ($i = 0; $i < count($_SESSION['ConfRoomStart']); $i++) {
+                                    $confroomBookingDetailDto = new conferenceroombookingdetailDto();
+                                    $confroomBookingDetailDto->setroomType($_SESSION['ConfRoomType'][$i]);
+                                    $confroomBookingDetailDto->setdate($_SESSION['ConfRoomDate'][$i]);
+                                    $confroomBookingDetailDto->setstartingTime($_SESSION['ConfRoomStart'][$i]);
+                                    $confroomBookingDetailDto->setfinishingTime($_SESSION['ConfRoomFinish'][$i]);
+                                    bookDao::instance()->insertConfRoomDetail($confroomBookingDetailDto);
+                                }
+                                unset ($_SESSION['ConfRoomType']);
+                                unset ($_SESSION['ConfRoomDate']);
+                                unset ($_SESSION['ConfRoomStart']);
+                                unset ($_SESSION['ConfRoomFinish']);
+                                unset ($_SESSION['ConfRoomMessages']);
+                            }
+                            common::redirectPage('History.php');
+                        }
 					}
 					else
 					{
@@ -151,8 +150,11 @@ class bookController
                                 $seatBookingDetailDto->setstartingDate($_SESSION['seatStart'][$i]);
                                 $seatBookingDetailDto->setfinishingDate($_SESSION['seatFinish'][$i]);
                                 $count = ordersDao::instance()->getCountSeats($seatBookingDetailDto);
-                                if ($count == 0) {
+                                if ($count <= 0) {
                                     //Thông báo là hết chỗ nhé (cho thời gian này nhé)
+                                    $_SESSION['seatMessages'][$i] = "Out of Stock";
+                                } else {
+                                    $_SESSION['seatMessages'][$i] = "";
                                 }
                             }
                         }
@@ -165,8 +167,11 @@ class bookController
                                 $teamroomBookingDetailDto->setstartingDate($_SESSION['TeamRoomStart'][$i]);
                                 $teamroomBookingDetailDto->setfinishingDate($_SESSION['TeamRoomFinish'][$i]);
                                 $count = ordersDao::instance()->getCountTeamrooms($teamroomBookingDetailDto);
-                                if ($count == 0) {
+                                if ($count <= 0) {
                                     //Thông báo là hết chỗ nhé (cho thời gian này nhé)
+                                    $_SESSION['TeamRoomMessages'][$i] = "Out of Stock";
+                                } else {
+                                    $_SESSION['TeamRoomMessages'][$i] = "";
                                 }
                             }
                         }
@@ -179,23 +184,25 @@ class bookController
                                 $confroomBookingDetailDto->setstartingTime($_SESSION['ConfRoomStart'][$i]);
                                 $confroomBookingDetailDto->setfinishingTime($_SESSION['ConfRoomFinish'][$i]);
                                 $count = ordersDao::instance()->getCountConferenceRoom($confroomBookingDetailDto);
-                                if ($count == 0) {
+                                if ($count <= 0) {
                                     //Thông báo là hết chỗ nhé (cho thời gian này nhé)
+                                    $_SESSION['ConfRoomMessages'][$i] = "Out of Stock";
+                                } else {
+                                    $_SESSION['ConfRoomMessages'][$i] = "";
                                 }
                             }
                         }
 
 						//Hien thi gio hang------------------------------------------------------------------------------------------------------------------
 						$seatPrice=bookLogic::instance()->SeatPrice();
-						$TeamRoomPrice=bookLogic::instance()->TeamRoomTypes();	
+						$TeamRoomPrice=bookLogic::instance()->TeamRoomTypes();
 						$ConferenceRoomPrice=bookLogic::instance()->ConferenceRoomTypes();
 
 						$orderDto= new ordersDto();
 						$orderDto->setusername($_SESSION['user']);
-						//echo $this->executeSelect("select concat(users.firstName , ' ', users.lastName) as name FROM users where username='".$_SESSION['user']."'");
 						$orderDto->setorderDate(date('d/m/Y'));
 						$orderDto->setcode('O'.(bookDao::instance()->createOrderCode()+1));
-						
+
 						bookView::Cart($seatPrice,$TeamRoomPrice,$ConferenceRoomPrice, $orderDto);
 					}
 				}
@@ -226,5 +233,33 @@ class bookController
 			}
 		}
 	}
+	private function checkBook(){
+	    $check = true;
+        if (isset($_SESSION['seatMessages'])) {
+            for ($i = 0; $i < count($_SESSION['seatMessages']); $i++) {
+                if($_SESSION['seatMessages'][$i]!=""){
+                    $check = false;
+                    break;
+                }
+            }
+        }
+        if (isset($_SESSION['TeamRoomMessages'])) {
+            for ($i = 0; $i < count($_SESSION['TeamRoomMessages']); $i++) {
+                if($_SESSION['TeamRoomMessages'][$i]!=""){
+                    $check = false;
+                    break;
+                }
+            }
+        }
+        if (isset($_SESSION['ConfRoomMessages'])) {
+            for ($i = 0; $i < count($_SESSION['ConfRoomMessages']); $i++) {
+                if($_SESSION['ConfRoomMessages'][$i]!=""){
+                    $check = false;
+                    break;
+                }
+            }
+        }
+        return $check;
+    }
 }
 ?>

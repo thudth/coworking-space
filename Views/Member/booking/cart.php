@@ -62,9 +62,14 @@ table
 		<td><?php echo $_SESSION['seatStart'][$a] ?></td>
 		<td><?php echo $_SESSION['seatFinish'][$a] ?></td>
 		<td><?php echo $pay. " 000 vnd"?></td>
-		<td><a href="?action=delSeatCart&id=<?php echo $a;?>">
-                <i class="fa fa-trash"></i> Delete</a></td>
-	  </tr>
+        <td>
+            <?php if ($_SESSION['seatMessages'][$a] != "") {
+                echo "<span id='err'>".$_SESSION['seatMessages'][$a]."</span><br>";
+            } ?>
+            <a href="?action=delSeatCart&id=<?php echo $a;?>">
+                  <i class="fa fa-trash"></i> Delete</a>
+        </td>
+      </tr>
       <?php }?>
     </tbody>
   </table><br />
@@ -108,8 +113,13 @@ table
 		<td><?php echo $_SESSION['TeamRoomStart'][$a] ?></td>
 		<td><?php echo $_SESSION['TeamRoomFinish'][$a] ?></td>
 		<td><?php echo $pay." 000 vnd" ?></td>
-		<td><a href="?action=delTeamRoomCart&id=<?php echo $a;?>">
-                <i class="fa fa-trash"></i> Delete</a></td>
+		<td>
+            <?php if ($_SESSION['TeamRoomMessages'][$a] != "") {
+                echo "<span id='err'>".$_SESSION['TeamRoomMessages'][$a]."</span><br>";
+            } ?>
+            <a href="?action=delTeamRoomCart&id=<?php echo $a;?>">
+                <i class="fa fa-trash"></i> Delete</a>
+        </td>
 	  </tr>
       <?php } ?>
     </tbody>
@@ -143,8 +153,13 @@ table
 		<td><?php echo $_SESSION['ConfRoomStart'][$a] ?> o'clock</td>
 		<td><?php echo $_SESSION['ConfRoomFinish'][$a] ?> o'clock</td>
 		<td><?php echo $pay." 000 vnd"; ?></td>
-		<td><a href="?action=delConfRoomCart&id=<?php echo $a;?>">
-                <i class="fa fa-trash"></i> Delete</a></td>
+		<td>
+            <?php if ($_SESSION['ConfRoomMessages'][$a] != "") {
+                echo "<span id='err'>".$_SESSION['ConfRoomMessages'][$a]."</span><br>";
+            } ?>
+            <a href="?action=delConfRoomCart&id=<?php echo $a;?>">
+                <i class="fa fa-trash"></i> Delete</a>
+        </td>
 	  </tr>
       <?php }?>
     </tbody>
@@ -163,3 +178,6 @@ table
 	else
 		echo "<h1>You don't have any reservation</h1>";
 ?>
+<?php if(isset($_GET['bookErr'])) {
+    echo "<script>alert('Please check your cart')</script>";
+} ?>

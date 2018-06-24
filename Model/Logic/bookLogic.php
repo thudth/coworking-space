@@ -27,24 +27,27 @@ class bookLogic
 		{
 			$arrStart=$_SESSION['seatStart'];
 			$arrFinish=$_SESSION['seatFinish'];
-			
+			$arrMessages=$_SESSION['seatMessages'];
+
 			$arrStart[]=$seatDto->getstartingDate();
 			$arrFinish[]=$seatDto->getfinishingDate();
+			$arrMessages[]="";
 		}
 		else 
 		//Nếu chưa có thì khởi tạo mảng và gán giá trị vào mảng
 		{
 			$arrStart=array();
 			$arrFinish=array();
-			
+			$arrMessages=array();
+
 			$arrStart[0]=$seatDto->getstartingDate();
 			$arrFinish[0]=$seatDto->getfinishingDate();
+			$arrMessages[0]="";
 		}
 		//Gán vào session mảng mới nhất
 		$_SESSION['seatStart']=$arrStart;
 		$_SESSION['seatFinish']=$arrFinish;
-		//for($i=0;$i<count($_SESSION['seatStart']); $i++)
-		//	echo $_SESSION['seatStart'][$i];
+		$_SESSION['seatMessages']=$arrMessages;
 	}
 	//Team Room-------------------------------------------------------------------------------------------
 	public function addTeamRoom($teamroomDto)
@@ -56,11 +59,13 @@ class bookLogic
 			$arrLengthTime=$_SESSION['TeamRoomLengthTime'];
 			$arrStart=$_SESSION['TeamRoomStart'];
 			$arrFinish=$_SESSION['TeamRoomFinish'];
-			
+			$arrMessages=$_SESSION['TeamRoomMessages'];
+
 			$arrType[]=$teamroomDto->getroomType();
 			$arrLengthTime[]=$teamroomDto->getlengthoftime();
 			$arrStart[]=$teamroomDto->getstartingDate();
 			$arrFinish[]=$teamroomDto->getfinishingDate();
+			$arrMessages[]="";
 		}
 		else 
 		{
@@ -68,16 +73,19 @@ class bookLogic
 			$arrLengthTime=array();
 			$arrStart=array();
 			$arrFinish=array();
-			
+			$arrMessages=array();
+
 			$arrType[]=$teamroomDto->getroomType();
 			$arrLengthTime[]=$teamroomDto->getlengthoftime();
 			$arrStart[]=$teamroomDto->getstartingDate();
 			$arrFinish[]=$teamroomDto->getfinishingDate();
+			$arrMessages[]="";
 		}
 		$_SESSION['TeamRoomType']=$arrType;
 		$_SESSION['TeamRoomLengthTime']=$arrLengthTime;
 		$_SESSION['TeamRoomStart']=$arrStart;
 		$_SESSION['TeamRoomFinish']=$arrFinish;
+		$_SESSION['TeamRoomMessages']=$arrMessages;
 	}
 
 	//Conference Room-------------------------------------------------------------------------------------
@@ -89,11 +97,13 @@ class bookLogic
 			$arrDate=$_SESSION['ConfRoomDate'];
 			$arrStart=$_SESSION['ConfRoomStart'];
 			$arrFinish=$_SESSION['ConfRoomFinish'];
-			
+			$arrMessages=$_SESSION['ConfRoomMessages'];
+
 			$arrType[]=$ConfRoomoDto->getroomType();
 			$arrDate[]=$ConfRoomoDto->getdate();
 			$arrStart[]=$ConfRoomoDto->getstartingTime();
 			$arrFinish[]=$ConfRoomoDto->getfinishingTime();
+			$arrMessages[]="";
 		}
 		else 
 		{
@@ -101,16 +111,19 @@ class bookLogic
 			$arrDate=array();
 			$arrStart=array();
 			$arrFinish=array();
-			
+			$arrMessages=array();
+
 			$arrType[]=$ConfRoomoDto->getroomType();
 			$arrDate[]=$ConfRoomoDto->getdate();
 			$arrStart[]=$ConfRoomoDto->getstartingTime();
 			$arrFinish[]=$ConfRoomoDto->getfinishingTime();
+			$arrMessages[]="";
 		}
 		$_SESSION['ConfRoomType']=$arrType;
 		$_SESSION['ConfRoomDate']=$arrDate;
 		$_SESSION['ConfRoomStart']=$arrStart;
 		$_SESSION['ConfRoomFinish']=$arrFinish;
+		$_SESSION['ConfRoomMessages']=$arrMessages;
 	}
 //Xoa don dat trong gio hang--------------------------------------------------------------------------------------------------------------------------------
 	//seats-------------------------------------------------------------------------------------------------
@@ -122,6 +135,7 @@ class bookLogic
 			//Nếu chỉ có 1 đơn đặt thì khi xóa đơn đặt đó thì xóa luôn session chứa cart
 			unset($_SESSION['seatStart']);
 			unset($_SESSION['seatFinish']);
+			unset($_SESSION['seatMessages']);
 		}
 		else
 		{
@@ -130,10 +144,12 @@ class bookLogic
 			{
 				$_SESSION['seatStart'][$i]=$_SESSION['seatStart'][$i+1];
 				$_SESSION['seatFinish'][$i]=$_SESSION['seatFinish'][$i+1];
+                $_SESSION['seatMessages'][$i]=$_SESSION['seatMessages'][$i+1];
 			}
 			//Gỡ bỏ phần tử cuối của mảngs
 			unset($_SESSION['seatStart'][$n-1]);
 			unset($_SESSION['seatFinish'][$n-1]);
+			unset($_SESSION['seatMessages'][$n-1]);
 		}
 		common::redirectPage('Book.php?action=cart');
 	}
@@ -148,6 +164,7 @@ class bookLogic
 			unset($_SESSION['TeamRoomLengthTime']);
 			unset($_SESSION['TeamRoomStart']);
 			unset($_SESSION['TeamRoomFinish']);
+			unset($_SESSION['TeamRoomMessages']);
 		}
 		else
 		{
@@ -158,12 +175,14 @@ class bookLogic
 				$_SESSION['TeamRoomLengthTime'][$i]=$_SESSION['TeamRoomLengthTime'][$i+1];
 				$_SESSION['TeamRoomStart'][$i]=$_SESSION['TeamRoomStart'][$i+1];
 				$_SESSION['TeamRoomFinish'][$i]=$_SESSION['TeamRoomFinish'][$i+1];
+				$_SESSION['TeamRoomMessages'][$i]=$_SESSION['TeamRoomMessages'][$i+1];
 			}
 			//Gỡ bỏ phần tử cuối của mảngs
 			unset($_SESSION['TeamRoomType'][$n-1]);
 			unset($_SESSION['TeamRoomLengthTime'][$n-1]);
 			unset($_SESSION['TeamRoomStart'][$n-1]);
 			unset($_SESSION['TeamRoomFinish'][$n-1]);
+			unset($_SESSION['TeamRoomMessages'][$n-1]);
 		}
 	}
 	//Conference ROOM-------------------------------------------------------------------------------------------------
@@ -177,6 +196,7 @@ class bookLogic
 			unset($_SESSION['ConfRoomDate']);
 			unset($_SESSION['ConfRoomStart']);
 			unset($_SESSION['ConfRoomFinish']);
+			unset($_SESSION['ConfRoomMessages']);
 		}
 		else
 		{
@@ -187,12 +207,14 @@ class bookLogic
 				$_SESSION['ConfRoomDate'][$i]=$_SESSION['ConfRoomDate'][$i+1];
 				$_SESSION['ConfRoomStart'][$i]=$_SESSION['ConfRoomStart'][$i+1];
 				$_SESSION['ConfRoomFinish'][$i]=$_SESSION['ConfRoomFinish'][$i+1];
+				$_SESSION['ConfRoomMessages'][$i]=$_SESSION['ConfRoomMessages'][$i+1];
 			}
 			//Gỡ bỏ phần tử cuối của mảngs
 			unset($_SESSION['ConfRoomType'][$n-1]);
 			unset($_SESSION['ConfRoomDate'][$n-1]);
 			unset($_SESSION['ConfRoomStart'][$n-1]);
 			unset($_SESSION['ConfRoomFinish'][$n-1]);
+			unset($_SESSION['ConfRoomMessages'][$n-1]);
 		}
 	}
 //Dat Hang (Luu vao DB)--------------------------------------------------------------------------------------------------------------------------------

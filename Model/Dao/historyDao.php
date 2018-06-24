@@ -116,7 +116,7 @@ class historyDao extends baseDao
 //order Cancel____________________________________________________________________________________________________________________________________________
 	public function orderCancel($ordercode)
 	{
-		$query= "update orders set orderState=5 where code='$ordercode'";
+		$query= "update orders set orderState=4 where code='$ordercode'";
 		$this->executeNonQuery($query);
 	}
 }

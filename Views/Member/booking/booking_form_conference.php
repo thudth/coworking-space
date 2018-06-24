@@ -41,7 +41,8 @@ function validate()
 	var date=document.getElementById('date').value;
 	var start=parseInt(document.getElementById('startingtime').value);
 	var finish=parseInt(document.getElementById('finishingtime').value);
-	if(date.length==0 || isNaN(start) || isNaN(finish) || finish<=start)
+    var dateNow= new Date();
+	if(date.length==0 || isNaN(start) || isNaN(finish) || finish<=start || dateNow>date)
 	{
 		document.getElementById('errtimeinuse').innerHTML="*Invalid date or time";
 		document.getElementById('startingtime').focus();

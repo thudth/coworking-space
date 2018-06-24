@@ -59,8 +59,9 @@ function validate()
 	
 	var duration=document.getElementById('duration').value;
 	var start=document.getElementById('startdate').value;
-	
-	if(start.length==0 || duration.length==0 || isNaN(duration) || startDate<dateNow)
+    var dateNow= new Date();
+    var startDate= new Date(start);
+	if(start.length==0 || duration.length==0 || isNaN(duration) || dateNow>startDate)
 	{
 		document.getElementById('errtimeinuse').innerHTML="*Invalid start date or duration";
 		document.getElementById('duration').focus();

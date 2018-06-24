@@ -167,13 +167,13 @@
         public function getCountSeats($seatbookingdetailDto)
         {
             // Đếm xem có bao nhiêu chỗ đã dùng và sẽ phải dùng
-            $querySeatsBooked = "SELECT count(*) as count FROM seatbookingdetail WHERE 
+            $querySeatsBooked = "SELECT count(*) as count FROM seatbookingdetail JOIN orders ON seatbookingdetail.ordercode = orders.code WHERE 
                         ( 
                             (startingDate>='".$seatbookingdetailDto->getstartingDate()."' AND startingDate>='".$seatbookingdetailDto->getfinishingDate()."') 
                             OR (startingDate<='".$seatbookingdetailDto->getstartingDate()."' AND finishingDate >= '".$seatbookingdetailDto->getstartingDate()."') 
                             OR (finishingDate>='".$seatbookingdetailDto->getstartingDate()."' AND finishingDate<='".$seatbookingdetailDto->getfinishingDate()."') 
                             OR (startingDate<='".$seatbookingdetailDto->getfinishingDate()."' AND finishingDate>='".$seatbookingdetailDto->getfinishingDate()."') 
-                        )";
+                        ) AND orderstate !=4";
             $resultSeatsBooked = $this->executeSelect($querySeatsBooked);
             $rowSeatsBooked = mysqli_fetch_array($resultSeatsBooked);
 
@@ -220,13 +220,13 @@
         public function getCountTeamrooms($teamroombookingdetailDto)
         {
             // Đếm xem có bao nhiêu chỗ đã dùng và sẽ phải dùng
-            $queryTeamroomsBooked = "SELECT count(*) as count FROM teamroombookingdetail 
+           $queryTeamroomsBooked = "SELECT count(*) as count FROM teamroombookingdetail JOIN orders ON teamroombookingdetail.ordercode = orders.code
                                 WHERE (
                                      (startingDate>='" . $teamroombookingdetailDto->getstartingDate() . "' AND startingDate>='" . $teamroombookingdetailDto->getfinishingDate() . "') 
                                      OR (startingDate<='" . $teamroombookingdetailDto->getstartingDate() . "' AND finishingDate >= '" . $teamroombookingdetailDto->getstartingDate() . "') 
                                      OR (finishingDate>='" . $teamroombookingdetailDto->getstartingDate() . "' AND finishingDate<='" . $teamroombookingdetailDto->getfinishingDate() . "') 
                                      OR (startingDate<='" . $teamroombookingdetailDto->getfinishingDate() . "' AND finishingDate>='" . $teamroombookingdetailDto->getfinishingDate() . "') 
-                                 ) ";
+                                 ) AND orderstate !=4";
             $resultTeamroomsBooked = $this->executeSelect($queryTeamroomsBooked);
             $rowTeamroomsBooked = mysqli_fetch_array($resultTeamroomsBooked);
 
@@ -277,13 +277,13 @@
         public function getCountConferenceRoom($conferenceroombookingdetailDto)
         {
             // Đếm xem có bao nhiêu chỗ đã dùng và sẽ phải dùng
-            $queryTeamroomsBooked = "SELECT COUNT(*) as count FROM conferenceroombookingdetail WHERE 
+            $queryTeamroomsBooked = "SELECT COUNT(*) as count FROM conferenceroombookingdetail JOIN orders ON conferenceroombookingdetail.ordercode=orders.code WHERE 
                                  (
                                      (startingTime>=" . $conferenceroombookingdetailDto->getstartingTime() . " AND startingTime>=" . $conferenceroombookingdetailDto->getfinishingTime() . ") 
                                      OR (startingTime<=" . $conferenceroombookingdetailDto->getstartingTime() . " AND finishingTime >=" . $conferenceroombookingdetailDto->getstartingTime() . ") 
                                      OR (finishingTime>=" . $conferenceroombookingdetailDto->getstartingTime() . " AND finishingTime<=" . $conferenceroombookingdetailDto->getfinishingTime() . ") 
                                      OR (startingTime<=" . $conferenceroombookingdetailDto->getfinishingTime() . " AND finishingTime>=" . $conferenceroombookingdetailDto->getfinishingTime() . ") 
-                                 )  AND date ='" . $conferenceroombookingdetailDto->getdate() . "'";
+                                 ) AND orderstate!=4 AND date ='" . $conferenceroombookingdetailDto->getdate() . "'";
             $resultTeamroomsBooked = $this->executeSelect($queryTeamroomsBooked);
             $rowTeamroomsBooked = mysqli_fetch_array($resultTeamroomsBooked);
     
