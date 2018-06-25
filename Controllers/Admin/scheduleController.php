@@ -20,7 +20,8 @@ class scheduleController
 					$date= $_POST['date'];
 				$seatUse=scheduleDao::instance()->seatUse($date);
 				$seatEmpty=scheduleDao::instance()->seatEmpty($date);
-				scheduleView::seatSchedule($seatUse,$seatEmpty);
+				$seatNotYetAllocate=scheduleDao::instance()->seatNotYetAllocate($date);
+				scheduleView::seatSchedule($seatUse,$seatEmpty,$seatNotYetAllocate);
 				break;
 			}
 			case "teamroom":
@@ -30,7 +31,8 @@ class scheduleController
 					$date= $_POST['date'];
 				$teamroomUse=scheduleDao::instance()->teamroomUse($date);
 				$teamroomEmpty=scheduleDao::instance()->teamroomEmpty($date);
-				scheduleView::teamroomSchedule($teamroomUse,$teamroomEmpty);
+				$TeamRoomNotYetAllocate=scheduleDao::instance()->TeamRoomNotYetAllocate($date);
+				scheduleView::teamroomSchedule($teamroomUse,$teamroomEmpty, $TeamRoomNotYetAllocate);
 				break;
 			}
 			case "confroom":
@@ -43,7 +45,8 @@ class scheduleController
 					$hour= $_POST['hour'];
 				$confroomUse=scheduleDao::instance()->ConfRoomUse($date,$hour);
 				$confroomEmpty=scheduleDao::instance()->ConfroomEmpty($date,$hour);
-				scheduleView::confroomSchedule($confroomUse,$confroomEmpty);
+                $ConfRoomNotYetAllocate=scheduleDao::instance()->ConfRoomNotYetAllocate($date,$hour);
+				scheduleView::confroomSchedule($confroomUse,$confroomEmpty, $ConfRoomNotYetAllocate);
 				break;
 			}
 		}

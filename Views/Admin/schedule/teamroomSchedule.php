@@ -22,6 +22,10 @@
   <tr>
     <th scope="col">Đang sử dụng</th>
     <th scope="col">Trống</th>
+    <th scope="col">
+        Chưa được cấp
+        <br><span class="note">(Loại phòng: còn ... vị trí chưa được cấp)</span>
+    </th>
   </tr>
 </thead>
 <tbody>
@@ -34,6 +38,11 @@
     <td>
     	<?php
 			foreach($teamroomEmpty as $a) echo $a."<br>";
+		?>
+    </td>
+    <td>
+    	<?php
+			foreach($TeamRoomNotYetAllocate as $a) echo $a."<br>";
 		?>
     </td>
   </tr>

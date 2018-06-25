@@ -22,6 +22,10 @@
   <tr>
     <th scope="col">Đang sử dụng</th>
     <th scope="col">Trống</th>
+    <th scope="col">
+        Chưa được cấp
+        <br><span class="note">(còn ... vị trí chưa được cấp)</span>
+    </th>
   </tr>
 </thead>
 <tbody>
@@ -34,6 +38,11 @@
     <td>
     	<?php
 			foreach($seatEmpty as $a) echo $a."<br>";
+		?>
+    </td>
+    <td>
+    	<?php
+			echo $seatNotYetAllocate."<br>";
 		?>
     </td>
   </tr>
