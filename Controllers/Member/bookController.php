@@ -150,8 +150,22 @@ class bookController
                                 $seatBookingDetailDto->setstartingDate($_SESSION['seatStart'][$i]);
                                 $seatBookingDetailDto->setfinishingDate($_SESSION['seatFinish'][$i]);
                                 $count = ordersDao::instance()->getCountSeats($seatBookingDetailDto);
+                                //Kiểm tra trường hợp trong giỏ hàng cũng có đơn hàng cần vị trí đó
+                                for ($j = 0; $j < count($_SESSION['seatStart']); $j++) {
+                                    if ($i == $j) {
+                                        break;
+                                    }
+                                    if (
+                                        ($_SESSION['seatStart'][$j] >= $_SESSION['seatStart'][$i] && $_SESSION['seatStart'][$j] >= $_SESSION['seatFinish'][$i]) ||
+                                        ($_SESSION['seatStart'][$j] <= $_SESSION['seatStart'][$i] && $_SESSION['seatFinish'][$j] >= $_SESSION['seatStart'][$i]) ||
+                                        ($_SESSION['seatFinish'][$j] >= $_SESSION['seatStart'][$i] && $_SESSION['seatFinish'][$j] <= $_SESSION['seatFinish'][$i]) ||
+                                        ($_SESSION['seatStart'][$j] <= $_SESSION['seatFinish'][$i] && $_SESSION['seatFinish'][$j] >= $_SESSION['seatFinish'][$i])
+                                    ) {
+                                        $count--;
+                                    }
+                                }
+                                //Thông báo là hết chỗ nhé (cho thời gian này nhé)
                                 if ($count <= 0) {
-                                    //Thông báo là hết chỗ nhé (cho thời gian này nhé)
                                     $_SESSION['seatMessages'][$i] = "Out of Stock";
                                 } else {
                                     $_SESSION['seatMessages'][$i] = "";
@@ -167,8 +181,22 @@ class bookController
                                 $teamroomBookingDetailDto->setstartingDate($_SESSION['TeamRoomStart'][$i]);
                                 $teamroomBookingDetailDto->setfinishingDate($_SESSION['TeamRoomFinish'][$i]);
                                 $count = ordersDao::instance()->getCountTeamrooms($teamroomBookingDetailDto);
+                                //Kiểm tra trường hợp trong giỏ hàng cũng có đơn hàng cần vị trí đó
+                                for ($j = 0; $j < count($_SESSION['TeamRoomStart']); $j++) {
+                                    if ($i == $j) {
+                                        break;
+                                    }
+                                    if (
+                                        ($_SESSION['TeamRoomStart'][$j] >= $_SESSION['TeamRoomStart'][$i] && $_SESSION['TeamRoomStart'][$j] >= $_SESSION['TeamRoomFinish'][$i]) ||
+                                        ($_SESSION['TeamRoomStart'][$j] <= $_SESSION['TeamRoomStart'][$i] && $_SESSION['TeamRoomFinish'][$j] >= $_SESSION['TeamRoomStart'][$i]) ||
+                                        ($_SESSION['TeamRoomFinish'][$j] >= $_SESSION['TeamRoomStart'][$i] && $_SESSION['TeamRoomFinish'][$j] <= $_SESSION['TeamRoomFinish'][$i]) ||
+                                        ($_SESSION['TeamRoomStart'][$j] <= $_SESSION['TeamRoomFinish'][$i] && $_SESSION['TeamRoomFinish'][$j] >= $_SESSION['TeamRoomFinish'][$i])
+                                    ) {
+                                        $count--;
+                                    }
+                                }
+                                //Thông báo là hết chỗ nhé (cho thời gian này nhé)
                                 if ($count <= 0) {
-                                    //Thông báo là hết chỗ nhé (cho thời gian này nhé)
                                     $_SESSION['TeamRoomMessages'][$i] = "Out of Stock";
                                 } else {
                                     $_SESSION['TeamRoomMessages'][$i] = "";
@@ -184,8 +212,23 @@ class bookController
                                 $confroomBookingDetailDto->setstartingTime($_SESSION['ConfRoomStart'][$i]);
                                 $confroomBookingDetailDto->setfinishingTime($_SESSION['ConfRoomFinish'][$i]);
                                 $count = ordersDao::instance()->getCountConferenceRoom($confroomBookingDetailDto);
+                                //Kiểm tra trường hợp trong giỏ hàng cũng có đơn hàng cần vị trí đó
+                                for ($j = 0; $j < count($_SESSION['ConfRoomStart']); $j++) {
+                                    if ($i == $j) {
+                                        break;
+                                    }
+                                    if (
+                                        $_SESSION['ConfRoomDate'][$i]== $_SESSION['ConfRoomDate'][$j] &&
+                                        ($_SESSION['ConfRoomStart'][$j] >= $_SESSION['ConfRoomStart'][$i] && $_SESSION['ConfRoomStart'][$j] >= $_SESSION['ConfRoomFinish'][$i]) ||
+                                        ($_SESSION['ConfRoomStart'][$j] <= $_SESSION['ConfRoomStart'][$i] && $_SESSION['ConfRoomFinish'][$j] >= $_SESSION['ConfRoomStart'][$i]) ||
+                                        ($_SESSION['ConfRoomFinish'][$j] >= $_SESSION['ConfRoomStart'][$i] && $_SESSION['ConfRoomFinish'][$j] <= $_SESSION['ConfRoomFinish'][$i]) ||
+                                        ($_SESSION['ConfRoomStart'][$j] <= $_SESSION['ConfRoomFinish'][$i] && $_SESSION['ConfRoomFinish'][$j] >= $_SESSION['ConfRoomFinish'][$i])
+                                    ) {
+                                        $count--;
+                                    }
+                                }
+                                //Thông báo là hết chỗ nhé (cho thời gian này nhé)
                                 if ($count <= 0) {
-                                    //Thông báo là hết chỗ nhé (cho thời gian này nhé)
                                     $_SESSION['ConfRoomMessages'][$i] = "Out of Stock";
                                 } else {
                                     $_SESSION['ConfRoomMessages'][$i] = "";
