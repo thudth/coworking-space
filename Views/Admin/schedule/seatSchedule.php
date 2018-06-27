@@ -13,8 +13,13 @@
 <body>
 <h2>Seat Schedule</h2>
 <form method="post" class="pure-form" id="search">
-	<strong>Date:</strong> 
-    <input type="date" name="date" value="<?php if(isset($_POST['date'])) echo $_POST['date'];?>" onchange="Find()"/>
+	<strong>Date:</strong>
+    <?php
+    $date = date('Y-m-d');
+    if (isset($_POST['date'])) {
+        $date = $_POST['date'];
+    } ?>
+    <input type="date" name="date" value="<?php echo $date; ?>" onchange="Find()"/>
 </form><br />
 
 <table border="1" cellspacing="0" class="pure-table">

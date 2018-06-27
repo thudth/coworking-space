@@ -14,8 +14,13 @@
 <body>
 <h2>Conference Room Schedule</h2>
 <form method="post" class="pure-form" id="search">
-	<strong>Date:</strong> 
-    <input type="date" name="date" value="<?php if(isset($_POST['date'])) echo $_POST['date'];?>" onchange="Find()"/>
+	<strong>Date:</strong>
+    <?php
+    $date = date('Y-m-d');
+    if (isset($_POST['date'])) {
+        $date = $_POST['date'];
+    } ?>
+    <input type="date" name="date" value="<?php echo $date; ?>" onchange="Find()"/>
 	<strong>Hour:</strong>
     <select name="hour" id="hour" onchange="Find()">
         <option>chọn</option>
@@ -52,7 +57,7 @@
     </td>
     <td>
     	<?php
-			foreach($ConfRoomNotYetAllocates as $a) echo $a."<br>";
+			foreach($ConfRoomNotYetAllocate as $a) echo $a."<br>";
 		?>
     </td>
   </tr>

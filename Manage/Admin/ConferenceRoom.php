@@ -68,12 +68,14 @@ session_start();
 <!--                        <i class="fa fa-cogs"></i> Order State</a></li>-->
             </ul>
         </div>
-        <a href="https://www.facebook.com"><i class="fa fa-facebook-square link-icon"></i></a>
-        <a href="https://plus.google.com"><i class="fa fa-google-plus-square link-icon"></i></a>
-        <a href="https://www.instagram.com"><i class="fa fa-instagram link-icon"></i></a>
-        <a href="https://twitter.com"><i class="fa fa-twitter-square link-icon"></i></a>
-        <a href="https://www.youtube.com"><i class="fa fa-youtube-square link-icon"></i></a>
-        <a href="https://www.pinterest.com"><i class="fa fa-pinterest-square link-icon"></i></a>
+        <div class="footer">
+            <a href="https://www.facebook.com"><i class="fa fa-facebook-square link-icon"></i></a>
+            <a href="https://plus.google.com"><i class="fa fa-google-plus-square link-icon"></i></a>
+            <a href="https://www.instagram.com"><i class="fa fa-instagram link-icon"></i></a>
+            <a href="https://twitter.com"><i class="fa fa-twitter-square link-icon"></i></a>
+            <a href="https://www.youtube.com"><i class="fa fa-youtube-square link-icon"></i></a>
+            <a href="https://www.pinterest.com"><i class="fa fa-pinterest-square link-icon"></i></a>
+        </div>
     </div>
     <!--Header---------------------------------------------------------------------------------------->
     <div id="header">

@@ -50,7 +50,13 @@ a:active {
 	}
 	#menu .link-icon {
 		color: #42c0fb;
-		font-size: 50px;
+		font-size: 38px;
+		margin: 0 5px;
+	}
+	.footer {
+		position: absolute;
+		bottom: 2px;
+		left: 0;
 	}
 /*Header------------------------------------------------------------*/
 #header

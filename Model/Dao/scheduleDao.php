@@ -37,7 +37,7 @@ class scheduleDao extends baseDao
                     WHERE seatNumber is null AND orderstate!=4 AND startingDate<='$date' AND finishingDate>='$date'";
         $result = $this->executeSelect($query);
         $row = mysqli_fetch_array($result);
-        $count = $row['count'];
+        $count = "Need ".$row['count']." seat(s)";
         $this->DisConnectDB();
         return $count;
     }
@@ -45,11 +45,13 @@ class scheduleDao extends baseDao
 	public function TeamRoomUse($date)
 	{
 		$TeamRoomUse=array();
-		echo $query= "SELECT roomNumber FROM teamroombookingdetail WHERE startingDate<='$date' AND finishingDate>='$date' AND roomNumber is not null";
+		$query= "SELECT roomNumber, roomType, name FROM teamroombookingdetail JOIN teamroomtypes 
+              ON teamroomtypes.code = teamroombookingdetail.roomType 
+              WHERE startingDate<='$date' AND finishingDate>='$date' AND roomNumber is not null";
 		$result=$this->executeSelect($query);
 		while($row= mysqli_fetch_array($result))
 		{
-			$TeamRoomUse[]=$row['roomNumber'];
+			$TeamRoomUse[]=$row['roomNumber']." (Type: ".$row['roomType']."_".$row['name'].")";
 		}
 		$this->DisConnectDB();
 		return $TeamRoomUse;
@@ -57,12 +59,13 @@ class scheduleDao extends baseDao
 	public function TeamRoomEmpty($date)
 	{
 		$TeamRoomEmpty=array();
-		$query= "SELECT roomNumber FROM teamrooms WHERE roomNumber not in  
+		$query= "SELECT roomNumber, roomType, name FROM teamrooms JOIN teamroomtypes 
+          ON teamrooms.roomType=teamroomtypes.code WHERE roomNumber not in  
 		(SELECT roomNumber FROM teamroombookingdetail WHERE startingDate<='$date' AND finishingDate>='$date' AND roomNumber is not null)";
 		$result=$this->executeSelect($query);
 		while($row= mysqli_fetch_array($result))
 		{
-			$TeamRoomEmpty[]=$row['roomNumber'];
+			$TeamRoomEmpty[]=$row['roomNumber']." (Type: ".$row['roomType']."_".$row['name'].")";
 		}
 		$this->DisConnectDB();
 		return $TeamRoomEmpty;
@@ -70,13 +73,15 @@ class scheduleDao extends baseDao
     public function TeamRoomNotYetAllocate($date)
     {
         $TeamRoomNotYetAllocate = array();
-        $query = "select  roomType, count(*) as count from teamroombookingdetail JOIN orders ON teamroombookingdetail.ordercode = orders.code 
+        $query = "select roomType, name, count(*) as count from teamroombookingdetail 
+                    JOIN orders ON teamroombookingdetail.ordercode = orders.code 
+                    JOIN teamroomtypes ON teamroomtypes.code= teamroombookingdetail.roomType 
                     WHERE teamroombookingdetail.roomNumber is null AND startingDate<='$date' AND finishingDate>='$date'
                     AND orderstate!=4 GROUP BY roomType";
         $result=$this->executeSelect($query);
         while($row= mysqli_fetch_array($result))
         {
-            $TeamRoomNotYetAllocate[]= $row['roomType'].": ".$row['count'];
+            $TeamRoomNotYetAllocate[]= $row['roomType']." (".$row['name']."): need ".$row['count']." room(s)";
         }
         $this->DisConnectDB();
         return $TeamRoomNotYetAllocate;
@@ -85,12 +90,13 @@ class scheduleDao extends baseDao
 	public function ConfRoomUse($date,$hour)
 	{ 
 		$ConfRoomUse=array();
-		$query= "SELECT roomNumber FROM conferenceroombookingdetail 
+		$query= "SELECT roomNumber, roomType, name FROM conferenceroombookingdetail 
+                    JOIN conferenceroomtypes ON conferenceroombookingdetail.roomType = conferenceroomtypes.code 
 					WHERE date='$date' AND startingTime<='$hour' AND finishingTime>='$hour'  AND roomNumber is not null";
 		$result=$this->executeSelect($query);
 		while($row= mysqli_fetch_array($result))
 		{
-			$ConfRoomUse[]=$row['roomNumber'];
+			$ConfRoomUse[]=$row['roomNumber']." (Type: ".$row['roomType']."_".$row['name'].")";
 		}
 		$this->DisConnectDB();
 		return $ConfRoomUse;
@@ -98,13 +104,14 @@ class scheduleDao extends baseDao
 	public function ConfRoomEmpty($date,$hour)
 	{
 		$ConfRoomEmpty=array();
-		$query= "SELECT roomNumber FROM conferencerooms  WHERE roomNumber not in  
-		(SELECT roomNumber FROM conferenceroombookingdetail 
+		$query= "SELECT roomNumber, roomType, name FROM conferencerooms 
+        JOIN conferenceroomtypes ON conferencerooms.roomType = conferenceroomtypes.code 
+        WHERE roomNumber not in (SELECT roomNumber FROM conferenceroombookingdetail 
 		WHERE date='$date' AND startingTime<='$hour' AND finishingTime>='$hour' AND roomNumber is not null)";
 		$result=$this->executeSelect($query);
 		while($row= mysqli_fetch_array($result))
 		{
-			$ConfRoomEmpty[]=$row['roomNumber'];
+			$ConfRoomEmpty[]=$row['roomNumber']." (Type: ".$row['roomType']."_".$row['name'].")";
 		}
 		$this->DisConnectDB();
 		return $ConfRoomEmpty;
@@ -112,14 +119,16 @@ class scheduleDao extends baseDao
     public function ConfRoomNotYetAllocate($date, $hour)
     {
         $ConfRoomNotYetAllocate = array();
-        $query = "select roomType, COUNT(*) as count from conferenceroombookingdetail JOIN orders ON conferenceroombookingdetail.ordercode = orders.code 
+        $query = "select roomType, name, COUNT(*) as count from conferenceroombookingdetail 
+                        JOIN orders ON conferenceroombookingdetail.ordercode = orders.code 
+                        JOIN conferenceroomtypes ON conferenceroombookingdetail.roomType = conferenceroomtypes.code 
                         WHERE conferenceroombookingdetail.roomNumber is null AND orderstate!=4 
                         AND date='$date' AND startingTime<='$hour' AND finishingTime>='$hour'
                         GROUP BY roomType";
         $result=$this->executeSelect($query);
         while($row= mysqli_fetch_array($result))
         {
-            $ConfRoomNotYetAllocate[]= $row['roomType'].": ".$row['count'];
+            $ConfRoomNotYetAllocate[]= $row['roomType']." (".$row['name']."): need ".$row['count']." room(s)";
         }
         $this->DisConnectDB();
         return $ConfRoomNotYetAllocate;
