@@ -34,6 +34,7 @@ session_start();
 <title>HOME</title>
 </head>
 <link rel="stylesheet" type="text/css" href="../../CssJavaScriptJquery/CSS/HomeCSS.css"/>
+<link rel="icon" href="../../images/coworking-logo.jpg">
 
 <script type="text/javascript" src="../../CssJavaScriptJquery/jquery-3.1.1.min.js"></script>
 

@@ -17,7 +17,7 @@ table
 
 <body>
 <h2>Revenue</h2>
-<table border="1" cellspacing="0" class="pure-table pure-table-bordered">
+<table border="1" cellspacing="0" class="pure-table pure-table-bordered" style="overflow-x:scroll" width="100px">
   <tr>
     <th scope="row">Year</th>
     <?php 

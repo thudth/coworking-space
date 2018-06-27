@@ -15,6 +15,7 @@ session_start();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>HOME</title>
 </head>
+<link rel="icon" href="../../images/coworking-logo.jpg">
 <link rel="stylesheet" type="text/css" href="../../CssJavaScriptJquery/CSS/HomeCSS.css"/>
 
 <script type="text/javascript" src="../../CssJavaScriptJquery/jquery-3.1.1.min.js"></script>

@@ -26,6 +26,11 @@ a:active {
 	height:100%;
 	background:#CCC;
 	position:fixed;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#menu::-webkit-scrollbar {
+    display: none;
 }
 	#logo
 	{
@@ -50,7 +55,7 @@ a:active {
 	}
 	#menu .link-icon {
 		color: #42c0fb;
-		font-size: 38px;
+		font-size: 35px;
 		margin: 0 5px;
 	}
 	.footer {

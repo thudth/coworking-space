@@ -22,6 +22,7 @@ session_start();
 <title>Order State</title>
 </head>
 <link rel="stylesheet" type="text/css" href="../../CssJavaScriptJquery/CSS/HomeAdminCSS.css"/>
+<link rel="icon" href="../../images/coworking-logo.jpg">
 
 <script type="text/javascript" src="../../CssJavaScriptJquery/jquery-3.1.1.min.js"></script>
 
