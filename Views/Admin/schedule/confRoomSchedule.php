@@ -35,11 +35,11 @@
 <table border="1" cellspacing="0" class="pure-table">
 <thead>
   <tr>
-    <th scope="col">Đang sử dụng</th>
-    <th scope="col">Trống</th>
+    <th scope="col">In Use</th>
+    <th scope="col">Empty</th>
     <th scope="col">
-      Chưa được cấp
-      <br><span class="note">(Loại phòng: còn ... vị trí chưa được cấp)</span>
+      Unallocated
+      <br><span class="note">(Room type: There are(is) ... unallocated position(s))</span>
     </th>
   </tr>
 </thead>

@@ -25,11 +25,11 @@
 <table border="1" cellspacing="0" class="pure-table">
 <thead>
   <tr>
-    <th scope="col">Đang sử dụng</th>
-    <th scope="col">Trống</th>
+    <th scope="col">In Use</th>
+    <th scope="col">Empty</th>
     <th scope="col">
-        Chưa được cấp
-        <br><span class="note">(còn ... vị trí chưa được cấp)</span>
+        Unallocated
+        <br><span class="note">(there are(is) ... unallocated seat(s))</span>
     </th>
   </tr>
 </thead>
