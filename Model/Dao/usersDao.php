@@ -133,8 +133,8 @@
 					$mail->SMTPSecure = "tls";
 					$mail->Host = "smtp.gmail.com"; 
 					$mail->Port = 587;	// set the SMTP port for the  GMAIL
-					$mail->Username = "huyenthudangthanh@gmail.com";	// Gmail username
-					$mail->Password = "thudth.tns.12";	// Gmail password
+					$mail->Username = "huyenthudangthanh@gmail.com";	// Gmail your username
+					$mail->Password = "";	// Gmail your password
 					$mail->CharSet = 'windows-1250';
 					$mail->SetFrom ('thudang84488@gmail.com', 'Coworking Space');
 					$mail->AddAddress ($usersDto->getemail(), $usersDto->getusername($usersDto->setusername($row["username"])));
